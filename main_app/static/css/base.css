@@ -1,0 +1,146 @@
+/* ===== GLOBAL STYLES ===== */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #F5F5F5;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+h1, h2, h3, h4 {
+    color: #4CAF50;
+    margin: 0 0 10px 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* ===== HEADER / NAVIGATION ===== */
+header {
+    background-color: #4CAF50;
+    padding: 10px 20px;
+}
+
+nav {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+nav a {
+    color: white;
+    font-weight: 500;
+    padding: 5px 10px;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    color: #FF9800;
+}
+
+/* ===== MAIN CONTENT ===== */
+main {
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* ===== FOOTER ===== */
+footer {
+    text-align: center;
+    padding: 15px;
+    background-color: #4CAF50;
+    color: white;
+    margin-top: 20px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+/* ===== BUTTONS ===== */
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+button:hover {
+    background-color: #81C784;
+}
+
+/* ===== FORMS ===== */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0 15px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+label {
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+/* ===== CARDS / LOG ENTRIES ===== */
+.card {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.card h3 {
+    margin-top: 0;
+    color: #4CAF50;
+}
+
+/* ===== MESSAGES ===== */
+.success {
+    color: #2e7d32;
+    background-color: #c8e6c9;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.error {
+    color: #c62828;
+    background-color: #ffcdd2;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media screen and (max-width: 600px) {
+    nav {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    main {
+        margin: 10px;
+        padding: 15px;
+    }
+
+    button {
+        width: 100%;
+    }
+}

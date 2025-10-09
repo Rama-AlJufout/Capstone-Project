@@ -51,3 +51,6 @@ This README provides an overview of the project, ERD, models, user stories, chal
 - Push notifications for reminders
 - Unit tests for models and views
 
+## Author
+**Rama AlJufout**  
+Email: aljufoutrama@gmail.com 
