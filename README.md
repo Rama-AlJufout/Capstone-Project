@@ -14,7 +14,6 @@ Users can:
 This README provides an overview of the project, ERD, models, user stories, challenges, and future enhancements.
 
 ## Content
-- [Setup](#setup)
 - [Models and Relationships](#models-and-relationships)
 - [User Stories](#user-stories)
 - [Challenges and Solutions](#challenges-and-solutions)
