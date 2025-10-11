@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
-from .forms import CustomUserCreationForm
+from .forms import CustomUserCreationForm, CustomUserUpdate
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import SetPasswordForm
 # from .forms import SignUpForm
 # from django.contrib.auth import login
 
@@ -34,3 +36,36 @@ def register(request):
     else:
         form = CustomUserCreationForm()
     return render(request, 'user/register.html', {'form': form})
+
+
+@login_required
+def profile_view(request):
+    user = request.user  # Get the logged-in user
+    context = {
+        'user': user
+    }
+    return render(request, 'user/profile.html', context)
+
+@login_required
+def update_profile_view(request):
+    user = request.user
+    if request.method == 'POST':
+        form = CustomUserUpdate(request.POST, instance=user)
+        if form.is_valid():
+            form.save()
+            return redirect('profile')
+    else:
+        form = CustomUserUpdate(instance=user)
+    
+    return render(request, 'user/update.html', {'form': form})
+
+@login_required
+def set_password_view(request):
+    if request.method == 'POST':
+        form = SetPasswordForm(request.user, request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('profile')
+    else:
+        form = SetPasswordForm(request.user)
+    return render(request, 'user/set_password.html', {'form': form})

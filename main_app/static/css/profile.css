@@ -1,0 +1,77 @@
+/* ===== PAGE BACKGROUND ===== */
+body {
+    background: url('../images/profile-bg.jpg') no-repeat center center fixed;
+    background-size: cover;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* ===== PROFILE CONTAINER ===== */
+.profile-container {
+    max-width: 400px;
+    margin: 100px auto 60px auto;
+    padding: 30px 40px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    text-align: left;
+    position: relative;
+    z-index: 1;
+}
+
+/* ===== HEADER ===== */
+.profile-container h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #009a87;
+    font-weight: 600;
+}
+
+/* ===== PROFILE FIELD STYLING ===== */
+.profile-field {
+    margin-bottom: 18px;
+}
+
+.profile-field label {
+    display: block;
+    font-weight: 600;
+    color: #00c4a7;
+    margin-bottom: 6px;
+}
+
+.profile-field span {
+    display: block;
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background: #f8f8f8;
+    font-size: 16px;
+    color: #333;
+    box-sizing: border-box;
+}
+
+/* ===== EDIT BUTTON ===== */
+.edit-btn {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 12px;
+    background: #00c4a7;
+    color: #fff;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 500;
+    margin-top: 25px;
+    transition: 0.3s;
+}
+
+.edit-btn:hover {
+    background: #009a87;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+    .profile-container {
+        margin: 120px 20px 60px 20px;
+    }
+}

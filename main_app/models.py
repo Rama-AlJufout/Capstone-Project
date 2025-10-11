@@ -15,3 +15,14 @@ class CustomUser(AbstractUser):
 
     def __str__(self):
         return self.username
+
+
+class ActivityLog(models.Model):
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    activity_type = models.CharField(max_length=100)
+    duration = models.PositiveIntegerField(help_text="Duration in minutes")
+    calories_burned = models.PositiveIntegerField()
+    date = models.DateField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.user.username} - {self.activity_type} ({self.date})"

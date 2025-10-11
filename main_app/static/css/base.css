@@ -10,11 +10,12 @@ html, body {
   width: 100%;
   overflow-x: hidden;
   font-family: 'Poppins', sans-serif;
-  background: #000; /* fallback color if video fails */
   color: #333;
+  display: flex;
+  flex-direction: column;
 }
 
-/* ================= VIDEO BACKGROUND (optional) ================= */
+/* ================= VIDEO BACKGROUND  ================= */
 body::before {
   content: "";
   position: fixed;
@@ -23,7 +24,6 @@ body::before {
   width: 100%;
   height: 100%;
   z-index: -2;
-  /* background: black; fallback if no video */
 }
 
 /* Overlay to make text readable */
@@ -40,7 +40,7 @@ body::after {
 
 /* ================= NAVBAR ================= */
 .navbar {
-  background: rgba(255, 255, 255, 0.1); 
+  background: rgba(0, 0, 0, 0.5); 
   padding: 15px 40px;
   display: flex;
   justify-content: space-between;
@@ -53,17 +53,39 @@ body::after {
 }
 
 /* Navbar links */
-.navbar nav a {
-  margin: 0 12px;
+.navbar nav ul {
+  display: flex;
+  list-style: none;
+  gap: 15px;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar nav ul li a {
+  color: #ffff;
   text-decoration: none;
-  color: #e6ffe6;
   font-weight: 500;
   transition: 0.3s;
 }
 
-.navbar nav a:hover {
+.navbar nav ul li a:hover {
   color: #7fffd4;
 }
+
+.navbar nav ul li form button.btn {
+  padding: 8px 20px;
+  border-radius: 25px;
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: 0.3s;
+}
+
+.navbar nav ul li form button.btn:hover {
+  background-color: #00c4a7;
+  transform: scale(1.05);
+}
+
 
 /* ================= LOGO + TITLE ================= */
 .logo-title {
@@ -72,10 +94,9 @@ body::after {
   gap: 10px;              
 }
 
-/* Title next to logo */
 .logo-title h2 a {
   text-decoration: none;
-  color: #e6ffe6;
+  color: #ffff;
   font-weight: 600;
   font-size: 1.5rem;
   transition: 0.3s;
@@ -87,13 +108,11 @@ body::after {
   transform: scale(1.05);
 }
 
-/* Logo size */
 .logo svg {
   width: 50px;
   height: 50px;
 }
 
-/* ECG heartbeat animation */
 .ecg {
   stroke-dasharray: 200;
   stroke-dashoffset: 200;
@@ -107,8 +126,14 @@ body::after {
 
 /* ================= MAIN CONTENT ================= */
 main {
+  flex: 1; /* Take up remaining space */
   margin: 0;
   padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* content starts below navbar */
+  align-items: center;
+  padding-top: 100px; /* push below navbar */
 }
 
 /* ================= FOOTER ================= */
@@ -117,14 +142,13 @@ footer {
   padding: 20px;
   background: rgba(0, 0, 0, 0.5);
   color: #e6ffe6;
-  margin-top: 0;
-  position: relative;
   z-index: 2;
+  backdrop-filter: blur(10px);
 }
 
 /* ================= BUTTONS ================= */
 button, .btn {
-  background-color: #66bb6a;
+  background-color: #00c4a7;
   color: #fff;
   border: none;
   padding: 10px 20px;
@@ -134,7 +158,7 @@ button, .btn {
 }
 
 button:hover, .btn:hover {
-  background-color: #43a047;
+  background-color: #00c4a7;
 }
 
 /* ================= MEDIA QUERIES ================= */
@@ -155,5 +179,9 @@ button:hover, .btn:hover {
 
   .logo-title h2 a {
     font-size: 1.3rem;
+  }
+
+  main {
+    padding-top: 120px; /* more space for mobile navbar */
   }
 }
