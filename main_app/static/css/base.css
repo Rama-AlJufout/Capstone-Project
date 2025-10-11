@@ -1,146 +1,159 @@
-/* ===== GLOBAL STYLES ===== */
-body {
-    font-family: 'Roboto', sans-serif;
-    background-color: #F5F5F5;
-    color: #333;
-    margin: 0;
-    padding: 0;
-    line-height: 1.6;
+/* ================= RESET + FULLSCREEN FIX ================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-h1, h2, h3, h4 {
-    color: #4CAF50;
-    margin: 0 0 10px 0;
+html, body {
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+  font-family: 'Poppins', sans-serif;
+  background: #000; /* fallback color if video fails */
+  color: #333;
 }
 
-a {
-    text-decoration: none;
+/* ================= VIDEO BACKGROUND (optional) ================= */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+  /* background: black; fallback if no video */
 }
 
-/* ===== HEADER / NAVIGATION ===== */
-header {
-    background-color: #4CAF50;
-    padding: 10px 20px;
+/* Overlay to make text readable */
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 50, 50, 0.5);
+  z-index: -1;
 }
 
-nav {
-    display: flex;
-    gap: 15px;
-    align-items: center;
-    flex-wrap: wrap;
+/* ================= NAVBAR ================= */
+.navbar {
+  background: rgba(255, 255, 255, 0.1); 
+  padding: 15px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 5;
+  backdrop-filter: blur(10px); /* glass effect */
 }
 
-nav a {
-    color: white;
-    font-weight: 500;
-    padding: 5px 10px;
-    transition: 0.3s;
+/* Navbar links */
+.navbar nav a {
+  margin: 0 12px;
+  text-decoration: none;
+  color: #e6ffe6;
+  font-weight: 500;
+  transition: 0.3s;
 }
 
-nav a:hover {
-    color: #FF9800;
+.navbar nav a:hover {
+  color: #7fffd4;
 }
 
-/* ===== MAIN CONTENT ===== */
+/* ================= LOGO + TITLE ================= */
+.logo-title {
+  display: flex;          
+  align-items: center;    
+  gap: 10px;              
+}
+
+/* Title next to logo */
+.logo-title h2 a {
+  text-decoration: none;
+  color: #e6ffe6;
+  font-weight: 600;
+  font-size: 1.5rem;
+  transition: 0.3s;
+}
+
+.logo-title h2 a:hover {
+  color: #7fffd4;
+  text-shadow: 0 0 10px rgba(127, 255, 212, 0.6);
+  transform: scale(1.05);
+}
+
+/* Logo size */
+.logo svg {
+  width: 50px;
+  height: 50px;
+}
+
+/* ECG heartbeat animation */
+.ecg {
+  stroke-dasharray: 200;
+  stroke-dashoffset: 200;
+  animation: draw 1.2s linear infinite;
+}
+
+@keyframes draw {
+  0% { stroke-dashoffset: 200; }
+  100% { stroke-dashoffset: 0; }
+}
+
+/* ================= MAIN CONTENT ================= */
 main {
-    max-width: 900px;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  margin: 0;
+  padding: 0;
 }
 
-/* ===== FOOTER ===== */
+/* ================= FOOTER ================= */
 footer {
-    text-align: center;
-    padding: 15px;
-    background-color: #4CAF50;
-    color: white;
-    margin-top: 20px;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
+  text-align: center;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.5);
+  color: #e6ffe6;
+  margin-top: 0;
+  position: relative;
+  z-index: 2;
 }
 
-/* ===== BUTTONS ===== */
-button {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: 500;
-    transition: 0.3s;
+/* ================= BUTTONS ================= */
+button, .btn {
+  background-color: #66bb6a;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
-button:hover {
-    background-color: #81C784;
+button:hover, .btn:hover {
+  background-color: #43a047;
 }
 
-/* ===== FORMS ===== */
-form {
-    display: flex;
+/* ================= MEDIA QUERIES ================= */
+@media (max-width: 768px) {
+  .logo-title {
+    gap: 5px;
+  }
+
+  .navbar {
     flex-direction: column;
-}
+    align-items: flex-start;
+    padding: 10px 20px;
+  }
 
-input, select, textarea {
-    width: 100%;
-    padding: 10px;
-    margin: 5px 0 15px 0;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-}
+  .navbar nav {
+    margin-top: 10px;
+  }
 
-label {
-    font-weight: 500;
-    margin-bottom: 5px;
-}
-
-/* ===== CARDS / LOG ENTRIES ===== */
-.card {
-    background-color: #fff;
-    border-radius: 10px;
-    padding: 15px;
-    margin-bottom: 15px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-
-.card h3 {
-    margin-top: 0;
-    color: #4CAF50;
-}
-
-/* ===== MESSAGES ===== */
-.success {
-    color: #2e7d32;
-    background-color: #c8e6c9;
-    padding: 10px;
-    border-radius: 5px;
-    margin-bottom: 15px;
-}
-
-.error {
-    color: #c62828;
-    background-color: #ffcdd2;
-    padding: 10px;
-    border-radius: 5px;
-    margin-bottom: 15px;
-}
-
-/* ===== RESPONSIVE DESIGN ===== */
-@media screen and (max-width: 600px) {
-    nav {
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    main {
-        margin: 10px;
-        padding: 15px;
-    }
-
-    button {
-        width: 100%;
-    }
+  .logo-title h2 a {
+    font-size: 1.3rem;
+  }
 }

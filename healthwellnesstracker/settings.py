@@ -75,8 +75,12 @@ WSGI_APPLICATION = 'healthwellnesstracker.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'healthwellnesstracker',
+        'USER': 'postgres',
+        'PASSWORD': '0000',
+        'HOST': 'localhost',
+        'PORT': '54321',
     }
 }
 
@@ -122,4 +126,4 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
+AUTH_USER_MODEL = 'main_app.CustomUser'

@@ -1,14 +1,14 @@
-from django.contrib.auth.forms import UserCreationForm
 from django import forms
-from .models import User
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+from .models import CustomUser
+
+class CustomUserCreationForm(UserCreationForm):
+    class Meta:
+        model = CustomUser
+        fields = ['username', 'password1', 'password2', 'age', 'height', 'weight', 'gender']
 
 
-# class SignUpForm (UserCreationForm):
-#     age = forms.IntegerField(required=False)
-#     gender = forms.CharField(max_length=10, required=False)
-#     height = forms.FloatField(required=False)
-#     weight = forms.FloatField(required=False)
-
-#     class Meta:
-#         model = User
-#         fields = ('username', 'age', 'gender', 'height', 'weight', 'password1', 'password2')
+class CustomUserChangeForm(UserChangeForm):
+    class Meta:
+        model = CustomUser
+        fields = ['username', 'email', 'age', 'height', 'weight', 'gender']
