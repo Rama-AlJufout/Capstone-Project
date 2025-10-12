@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from .models import CustomUser
+from .models import CustomUser, ActivityLog
 
 # Register your custom user model
 class CustomUserAdmin(UserAdmin):
@@ -32,3 +32,10 @@ class CustomUserAdmin(UserAdmin):
 
 # Register the model with the admin
 admin.site.register(CustomUser, CustomUserAdmin)
+
+
+@admin.register(ActivityLog)
+class ActivityLogAdmin(admin.ModelAdmin):
+    list_display = ('user', 'activity_type', 'duration_minutes', 'calories_burned', 'date')
+    search_fields = ('user__username', 'activity_type')
+    list_filter = ('activity_type', 'date')

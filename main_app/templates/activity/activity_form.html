@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/activity/activity.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="profile-wrapper">
+  <div class="form-container">
+    <h2>{{ title }}</h2>
+    <form method="POST">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" class="edit-btn">Save Changes</button>
+      <a href="{% url 'activity_log' %}" class="edit-btn" style="background:#555;">Cancel</a>
+    </form>
+  </div>
+</div>
+{% endblock %}

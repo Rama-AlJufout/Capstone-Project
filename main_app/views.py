@@ -1,5 +1,6 @@
-from django.shortcuts import render, redirect
-from .forms import CustomUserCreationForm, CustomUserUpdate
+from django.shortcuts import render, redirect, get_object_or_404
+from .models import ActivityLog
+from .forms import CustomUserCreationForm, CustomUserUpdate, ActivityLogForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import SetPasswordForm
@@ -13,19 +14,6 @@ def home(request):
 def about(request):
     return render(request, 'about.html')
 
-# def signup_view(request):
-#     if request.method == 'POST':
-#         form = SignUpForm(request.POST)
-#         if form.is_valid():
-#             user = form.save()
-#             login(request, user)  # Log in the user after signup
-#             return redirect('home')
-#     else:
-#         form = SignUpForm()
-#     return render(request, 'main_app/signup.html', {'form': form})
-
-from django.shortcuts import render, redirect
-
 def register(request):
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
@@ -37,14 +25,11 @@ def register(request):
         form = CustomUserCreationForm()
     return render(request, 'user/register.html', {'form': form})
 
-
 @login_required
 def profile_view(request):
-    user = request.user  # Get the logged-in user
-    context = {
-        'user': user
-    }
-    return render(request, 'user/profile.html', context)
+    user = request.user
+    activities = ActivityLog.objects.filter(user=user).order_by('-date')
+    return render(request, 'user/profile.html', {'user': user, 'activities': activities})
 
 @login_required
 def update_profile_view(request):
@@ -69,3 +54,45 @@ def set_password_view(request):
     else:
         form = SetPasswordForm(request.user)
     return render(request, 'user/set_password.html', {'form': form})
+
+@login_required
+def activity_log_view(request):
+    # Create + Read
+    user = request.user
+    activities = ActivityLog.objects.filter(user=user).order_by('-date')
+
+    if request.method == 'POST':
+        form = ActivityLogForm(request.POST)
+        if form.is_valid():
+            activity = form.save(commit=False)
+            activity.user = user
+            activity.save()
+            return redirect('activity_log')
+    else:
+        form = ActivityLogForm()
+
+    return render(request, 'activity/activity_log.html', {'form': form, 'activities': activities})
+
+@login_required
+def activity_update(request, pk):
+    # Update
+    activity = get_object_or_404(ActivityLog, pk=pk)
+    if request.method == 'POST':
+        form = ActivityLogForm(request.POST, instance=activity)
+        if form.is_valid():
+            form.save()
+            return redirect('activity_list')
+    else:
+        form = ActivityLogForm(instance=activity)
+
+    return render(request, 'activity/activity_form.html', {'form': form, 'title': 'Edit Activity'})
+
+@login_required
+def activity_delete(request, pk):
+    # Delete
+    activity = get_object_or_404(ActivityLog, pk=pk)
+    if request.method == 'POST':
+        activity.delete()
+        return redirect('activity_list')
+    
+    return render(request, 'activity/activity_confirm_delete.html', {'activity': activity})

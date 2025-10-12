@@ -6,29 +6,53 @@
 {% endblock %}
 
 {% block content %}
-<div class="profile-container">
-    <h2>Welcome, {{ user.username }} 🌿</h2>
+<div class="profile-wrapper">
 
-    <div class="profile-field">
-        <label>Age:</label>
-        <span>{{ user.age }} years</span>
+    <!-- ===== PROFILE INFO ===== -->
+    <div class="profile-container">
+        <h2>Welcome, {{ user.username }} 🌿</h2>
+
+        <div class="profile-field">
+            <label>Age:</label>
+            <span>{{ user.age }} years</span>
+        </div>
+
+        <div class="profile-field">
+            <label>Height:</label>
+            <span>{{ user.height }} cm</span>
+        </div>
+
+        <div class="profile-field">
+            <label>Weight:</label>
+            <span>{{ user.weight }} kg</span>
+        </div>
+
+        <div class="profile-field">
+            <label>Gender:</label>
+            <span>{{ user.get_gender_display }}</span>
+        </div>
+
+        <a href="{% url 'update_profile' %}" class="edit-btn">Edit Profile</a>
     </div>
 
-    <div class="profile-field">
-        <label>Height:</label>
-        <span>{{ user.height }} cm</span>
+    <!-- ===== ACTIVITY HISTORY ===== -->
+    <div class="history-container">
+        <h2>My Activities</h2>
+        {% if activities %}
+        <div class="activity-cards">
+            {% for a in activities %}
+            <div class="activity-card">
+                <h3>{{ a.get_activity_type_display }}</h3>
+                <p><strong>Duration:</strong> {{ a.duration_minutes }} minutes</p>
+                <p><strong>Calories Burned:</strong> {{ a.calories_burned }} kcal</p>
+                <p><strong>Date:</strong> {{ a.date|date:"M. d, Y" }}</p>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <p class="no-activities">No activities logged yet.</p>
+        {% endif %}
     </div>
 
-    <div class="profile-field">
-        <label>Weight:</label>
-        <span>{{ user.weight }} kg</span>
-    </div>
-
-    <div class="profile-field">
-        <label>Gender:</label>
-        <span>{{ user.gender }}</span>
-    </div>
-
-    <a href="{% url 'update_profile' %}" class="edit-btn">Edit Profile</a>
 </div>
 {% endblock %}

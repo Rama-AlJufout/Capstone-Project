@@ -10,10 +10,8 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(next_page='home'), name='logout'),
     path('profile/', views.profile_view, name='profile'),
     path('profile/update/', views.update_profile_view, name='update_profile'),
-    # path('set-password/', views.set_password_view, name='set_password'),
-    path('profile/password/', auth_views.PasswordChangeView.as_view(
-             template_name='user/set_password.html',
-             success_url='/profile/'
-         ), 
-         name='password_change'),
+    path('profile/password/', auth_views.PasswordChangeView.as_view(template_name='user/set_password.html',success_url='/profile/'), name='password_change'),
+    path('activities/', views.activity_log_view, name='activity_log'),
+    path('update/<int:pk>/', views.activity_update, name='activity_update'),
+    path('delete/<int:pk>/', views.activity_delete, name='activity_delete'),
 ]
