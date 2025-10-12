@@ -6,14 +6,16 @@
 {% endblock %}
 
 {% block content %}
-<div class="profile-wrapper">
-  <div class="form-container">
-    <h2>Delete Activity</h2>
-    <p>Are you sure you want to delete "<strong>{{ activity.get_activity_type_display }}</strong>"?</p>
+<div class="confirm-delete-container">
+  <div class="confirm-card">
+    <h2>Confirm Delete</h2>
+    <p>Are you sure you want to delete the activity <strong>{{ activity.get_activity_type_display }}</strong>?</p>
+    <p><em>Date:</em> {{ activity.date|date:"M. d, Y" }}</p>
+
     <form method="POST">
       {% csrf_token %}
-      <button type="submit" class="edit-btn" style="background:#f44336;">Yes, Delete</button>
-      <a href="{% url 'activity_log' %}" class="edit-btn" style="background:#555;">Cancel</a>
+      <button type="submit" class="delete-btn">Yes, Delete</button>
+      <a href="{% url 'activity_log' %}" class="edit-btn">Cancel</a>
     </form>
   </div>
 </div>

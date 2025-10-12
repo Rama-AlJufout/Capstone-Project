@@ -162,3 +162,139 @@ body {
         grid-template-columns: 1fr;
     }
 }
+
+/* ================= ACTIVITY CARD LINK & BUTTONS ================= */
+
+/* Make the inner anchor behave like a block card content */
+.activity-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  padding: 0; /* the card has its own padding */
+}
+
+/* Ensure clickable whole card area looks clickable when using <a> inside .activity-card */
+.activity-card:hover .activity-link,
+.activity-card:focus-within .activity-link {
+  outline: none;
+  text-decoration: none;
+}
+
+/* Actions container under each card */
+.activity-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  margin-top: 14px;
+}
+
+/* Base button look (shared) */
+.edit-btn,
+.delete-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: 10px;
+  border: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+  text-decoration: none; /* for <a> */
+}
+
+/* Edit (primary) */
+.edit-btn {
+  background: linear-gradient(90deg, #00c4a7, #00796b);
+  color: #fff;
+  box-shadow: 0 6px 18px rgba(0, 196, 167, 0.12);
+}
+
+.edit-btn:hover,
+.edit-btn:focus {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 24px rgba(0, 121, 107, 0.16);
+}
+
+/* Delete (danger) */
+.delete-btn {
+  background: #d9534f;
+  color: #fff;
+  box-shadow: 0 6px 18px rgba(217, 83, 79, 0.12);
+  border: 1px solid rgba(0,0,0,0.03);
+}
+
+.delete-btn:hover,
+.delete-btn:focus {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 24px rgba(181, 43, 39, 0.16);
+}
+
+/* Make sure form submit button inside card matches style */
+.activity-card form button.delete-btn {
+  border: none;
+  background: #d9534f;
+}
+
+/* Make sure anchor-edit behaves like button when using <a> */
+.activity-actions a.edit-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Small devices: stack actions vertically for spacing */
+@media (max-width: 520px) {
+  .activity-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .edit-btn, .delete-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* Accessibility: focus ring */
+.edit-btn:focus,
+.delete-btn:focus,
+.activity-link:focus {
+  outline: 3px solid rgba(0, 196, 167, 0.18);
+  outline-offset: 3px;
+}
+
+/* ===== DELETE CONFIRMATION MODAL ===== */
+.confirm-delete-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 90vh;
+  padding: 20px;
+}
+
+.confirm-card {
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  padding: 40px;
+  text-align: center;
+  width: 100%;
+  max-width: 450px;
+  color: #004d40;
+  font-family: 'Poppins', sans-serif;
+}
+
+.confirm-card h2 {
+  color: #dfcab0;
+  margin-bottom: 15px;
+  font-size: 1.8rem;
+}
+
+.confirm-card p {
+  margin-bottom: 20px;
+  font-size: 1rem;
+}

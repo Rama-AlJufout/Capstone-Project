@@ -60,39 +60,50 @@ def activity_log_view(request):
     # Create + Read
     user = request.user
     activities = ActivityLog.objects.filter(user=user).order_by('-date')
-
+    
     if request.method == 'POST':
         form = ActivityLogForm(request.POST)
         if form.is_valid():
             activity = form.save(commit=False)
             activity.user = user
             activity.save()
+            messages.success(request, 'Activity logged successfully!')
             return redirect('activity_log')
     else:
         form = ActivityLogForm()
-
-    return render(request, 'activity/activity_log.html', {'form': form, 'activities': activities})
+    
+    return render(request, 'activity/activity_log.html', {'form': form, 'activities': activities })
 
 @login_required
 def activity_update(request, pk):
     # Update
-    activity = get_object_or_404(ActivityLog, pk=pk)
+    activity = get_object_or_404(ActivityLog, pk=pk, user=request.user)
+    
     if request.method == 'POST':
         form = ActivityLogForm(request.POST, instance=activity)
         if form.is_valid():
             form.save()
-            return redirect('activity_list')
+            messages.success(request, 'Activity updated successfully!')
+            return redirect('activity_log')
     else:
         form = ActivityLogForm(instance=activity)
-
-    return render(request, 'activity/activity_form.html', {'form': form, 'title': 'Edit Activity'})
+    
+    return render(request, 'activity/activity_form.html', {
+        'form': form,
+        'activity': activity,
+        'title': 'Edit Activity'
+    })
 
 @login_required
 def activity_delete(request, pk):
     # Delete
-    activity = get_object_or_404(ActivityLog, pk=pk)
+    activity = get_object_or_404(ActivityLog, pk=pk, user=request.user)
+    
     if request.method == 'POST':
         activity.delete()
-        return redirect('activity_list')
+        messages.success(request, f'Activity "{activity.get_activity_type_display}" deleted successfully!')
+        return redirect('activity_log')
     
-    return render(request, 'activity/activity_confirm_delete.html', {'activity': activity})
+    return render(request, 'activity/activity_confirm_delete.html', {
+        'activity': activity
+    })

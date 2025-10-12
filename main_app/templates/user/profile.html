@@ -9,27 +9,27 @@
 <div class="profile-wrapper">
 
     <!-- ===== PROFILE INFO ===== -->
-    <div class="profile-container">
+    <div class="profile-container glass-card">
         <h2>Welcome, {{ user.username }} 🌿</h2>
 
         <div class="profile-field">
             <label>Age:</label>
-            <span>{{ user.age }} years</span>
+            <span>{{ user.age|default:"N/A" }} years</span>
         </div>
 
         <div class="profile-field">
             <label>Height:</label>
-            <span>{{ user.height }} cm</span>
+            <span>{{ user.height|default:"N/A" }} cm</span>
         </div>
 
         <div class="profile-field">
             <label>Weight:</label>
-            <span>{{ user.weight }} kg</span>
+            <span>{{ user.weight|default:"N/A" }} kg</span>
         </div>
 
         <div class="profile-field">
             <label>Gender:</label>
-            <span>{{ user.get_gender_display }}</span>
+            <span>{{ user.get_gender_display|default:"N/A" }}</span>
         </div>
 
         <a href="{% url 'update_profile' %}" class="edit-btn">Edit Profile</a>
@@ -37,7 +37,8 @@
 
     <!-- ===== ACTIVITY HISTORY ===== -->
     <div class="history-container">
-        <h2>My Activities</h2>
+        <h2 class="history-header">My Activities</h2>
+
         {% if activities %}
         <div class="activity-cards">
             {% for a in activities %}
@@ -46,13 +47,28 @@
                 <p><strong>Duration:</strong> {{ a.duration_minutes }} minutes</p>
                 <p><strong>Calories Burned:</strong> {{ a.calories_burned }} kcal</p>
                 <p><strong>Date:</strong> {{ a.date|date:"M. d, Y" }}</p>
+
+                {% if a.pk %}
+                <div class="activity-actions">
+                    <a href="{% url 'activity_update' a.pk %}" class="edit-btn">Edit</a>
+                    <form action="{% url 'activity_delete' a.pk %}" method="POST" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="delete-btn" onclick="return confirm('Are you sure you want to delete this activity?');">Delete</button>
+                    </form>
+                    <div style="text-align: center; margin-top: 20px;">
+                        <a href="{% url 'activity_log' %}" class="edit-btn">Add Your Activity</a>
+                    </div>
+                </div>
+                {% endif %}
             </div>
             {% endfor %}
         </div>
         {% else %}
-        <p class="no-activities">No activities logged yet.</p>
+        <p class="no-activities">No activities logged yet. Start by adding a new activity!</p>
+        <div style="text-align: center; margin-top: 20px;">
+            <a href="{% url 'activity_log' %}" class="edit-btn">Add Your First Activity</a>
+        </div>
         {% endif %}
     </div>
-
 </div>
 {% endblock %}

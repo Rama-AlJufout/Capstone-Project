@@ -12,6 +12,8 @@ urlpatterns = [
     path('profile/update/', views.update_profile_view, name='update_profile'),
     path('profile/password/', auth_views.PasswordChangeView.as_view(template_name='user/set_password.html',success_url='/profile/'), name='password_change'),
     path('activities/', views.activity_log_view, name='activity_log'),
-    path('update/<int:pk>/', views.activity_update, name='activity_update'),
-    path('delete/<int:pk>/', views.activity_delete, name='activity_delete'),
+    path('activities/<int:pk>/edit/', views.activity_update, name='activity_update'),
+    path('activities/<int:pk>/delete/', views.activity_delete, name='activity_delete'),
+
+
 ]

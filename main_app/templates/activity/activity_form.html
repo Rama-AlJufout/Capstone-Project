@@ -6,15 +6,31 @@
 {% endblock %}
 
 {% block content %}
-<div class="profile-wrapper">
-  <div class="form-container">
+
+<!-- ===== VIDEO BACKGROUND ===== -->
+<div class="video-bg">
+  <video autoplay muted loop id="bg-video">
+    <source src="{% static 'videos/bg.mp4' %}" type="video/mp4">
+  </video>
+  <div class="overlay"></div>
+</div>
+
+<!-- ===== EDIT ACTIVITY FORM ===== -->
+<div class="activity-wrapper">
+  <div class="form-container glass-card">
     <h2>{{ title }}</h2>
+
     <form method="POST">
       {% csrf_token %}
       {{ form.as_p }}
-      <button type="submit" class="edit-btn">Save Changes</button>
-      <a href="{% url 'activity_log' %}" class="edit-btn" style="background:#555;">Cancel</a>
+      <button type="submit" class="edit-btn">💾 Save Changes</button>
+    </form>
+
+    <form method="POST" action="{% url 'activity_delete' activity.pk %}" style="margin-top:20px;">
+      {% csrf_token %}
+      <button type="submit" class="delete-btn">🗑 Delete Activity</button>
     </form>
   </div>
 </div>
+
 {% endblock %}

@@ -7,7 +7,7 @@
 
 {% block content %}
 
-<!-- Video Background -->
+<!-- ===== Video Background ===== -->
 <div class="video-bg">
     <video autoplay muted loop id="bg-video">
         <source src="{% static 'videos/bg.mp4' %}" type="video/mp4">
@@ -24,17 +24,27 @@
       <div class="activity-cards">
         {% for activity in activities %}
         <div class="activity-card">
-          <h3>{{ activity.get_activity_type_display }}</h3>
-          <p><strong>Duration:</strong> {{ activity.duration_minutes }} minutes</p>
-          <p><strong>Calories Burned:</strong> {{ activity.calories_burned }} kcal</p>
-          <p><strong>Date:</strong> {{ activity.date|date:"M. d, Y" }}</p>
+          <a href="{% url 'activity_update' activity.pk %}" class="activity-link">
+            <h3>{{ activity.get_activity_type_display }}</h3>
+            <p><strong>Duration:</strong> {{ activity.duration_minutes }} minutes</p>
+            <p><strong>Calories Burned:</strong> {{ activity.calories_burned }} kcal</p>
+            <p><strong>Date:</strong> {{ activity.date|date:"M. d, Y" }}</p>
+          </a>
+
+          <div class="activity-actions">
+            <a href="{% url 'activity_update' activity.pk %}" class="edit-btn">Edit</a>
+            <form method= "POST" action="{% url 'activity_delete' activity.pk %}" method="POST" style="display:inline;">
+              {% csrf_token %}
+              <button type="submit" class="delete-btn">Delete</button>
+            </form>
+          </div>
         </div>
         {% endfor %}
       </div>
     </div>
 
     <!-- ===== New Activity Form ===== -->
-    <div class="form-container">
+    <div class="form-container glass-card">
       <h2>Log New Activity</h2>
       <form method="POST">
         {% csrf_token %}
@@ -66,7 +76,7 @@
 
   {% else %}
     <!-- ===== No Activities: Show Form First ===== -->
-    <div class="form-container">
+    <div class="form-container glass-card">
       <h2>Log Your First Activity</h2>
       <form method="POST">
         {% csrf_token %}
@@ -96,6 +106,5 @@
       </form>
     </div>
   {% endif %}
-
 </div>
 {% endblock %}
