@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
-from .models import CustomUser, ActivityLog
+from .models import CustomUser, ActivityLog, MealLog
 
 class CustomUserCreationForm(UserCreationForm):
     class Meta:
@@ -23,4 +23,13 @@ class ActivityLogForm(forms.ModelForm):
             'start_time': forms.TimeInput(attrs={'type': 'time'}),
             'end_time': forms.TimeInput(attrs={'type': 'time'}),
             'activity_type': forms.Select(attrs={'class': 'form-select'}),
+        }
+
+class MealLogForm(forms.ModelForm):
+    class Meta:
+        model = MealLog
+        fields = ['meal_type', 'food_items', 'calories', 'date']
+        widgets = {
+            'date': forms.DateInput(attrs={'type': 'date'}),
+            'food_items': forms.Textarea(attrs={'rows': 3}),
         }

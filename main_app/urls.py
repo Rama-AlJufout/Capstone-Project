@@ -4,7 +4,6 @@ from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('', views.home, name='home'),
-    path('about/', views.about, name='about'),
     path('register/', views.register, name='register'),
     path('login/', auth_views.LoginView.as_view(template_name='user/login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(next_page='home'), name='logout'),
@@ -14,6 +13,9 @@ urlpatterns = [
     path('activities/', views.activity_log_view, name='activity_log'),
     path('activities/<int:pk>/edit/', views.activity_update, name='activity_update'),
     path('activities/<int:pk>/delete/', views.activity_delete, name='activity_delete'),
-
+    path('meals/', views.meal_list, name='meal_list'),
+    path('meals/add/', views.meal_create, name='meal_create'),
+    path('meals/<int:pk>/edit/', views.meal_update, name='meal_update'),
+    path('meals/<int:pk>/delete/', views.meal_delete, name='meal_delete'),
 
 ]

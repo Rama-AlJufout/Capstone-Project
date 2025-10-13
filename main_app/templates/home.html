@@ -6,11 +6,11 @@
 {% endblock %}
 
 {% block content %}
-<section class="hero">
-  <div class="video-bg">
-    <video autoplay muted loop playsinline id="bg-video">
+
+<!-- ===== HERO SECTION ===== -->
+<section id="home" class="section">
+    <video autoplay muted loop>
         <source src="{% static 'videos/home-bg.mp4' %}" type="video/mp4">
-        Your browser does not support HTML5 video.
     </video>
     <div class="overlay"></div>
     <div class="content">
@@ -18,26 +18,63 @@
         <p>Track your meals, activities, and mental health, all in one place.</p>
         <a href="{% url 'login' %}" class="btn">Get Started</a>
     </div>
+</section>
+
+<!-- ===== STATS SECTION  ===== -->
+<section id="stats" class="section" style="background-color:#f5f5f5;">
+    <div class="content">
+        <div class="card">
+            <h3>🔥 Calories</h3>
+            <p>1850 / 2200</p>
+        </div>
+        <div class="card">
+            <h3>🚶‍♂️ Steps</h3>
+            <p>7,200 / 10,000</p>
+        </div>
+        <div class="card">
+            <h3>💧 Water</h3>
+            <p>6 / 8 cups</p>
+        </div>
+        <div class="card">
+            <h3>😴 Sleep</h3>
+            <p>7 hours</p>
+        </div>
+    </div>
+</section>
+
+<!-- ===== ABOUT SECTION ===== -->
+<section id="about" class="section">
+    <video autoplay muted loop>
+        <source src="{% static 'videos/about-bg.mp4' %}" type="video/mp4">
+    </video>
+    <div class="overlay"></div>
+    <div class="content">
+        <h1>About the Tracker 🌿</h1>
+        <p>This Website helps users build a balanced lifestyle by tracking diet, fitness, and daily reflections.</p>
+        <a href="{% url 'login' %}" class="btn">Get Started</a>
+    </div>
+</section>
+
+<!-- ===== CONTACT SECTION ===== -->
+<section id="contact" class="section">
+  <div class="contact-container">
+    <!-- Contact Form -->
+    <div class="contact-form">
+      <h2>Contact Us</h2>
+      <form>
+        <input type="text" placeholder="Your Name" required>
+        <input type="email" placeholder="Your Email" required>
+        <textarea placeholder="Your Message" rows="5" required></textarea>
+        <button type="submit">Send</button>
+      </form>
+    </div>
+
+    <!-- Contact Image -->
+    <div class="contact-image-wrapper">
+      <img src="{% static 'images/meals-bg.jpg' %}" alt="Contact" class="contact-image">
+    </div>
   </div>
 </section>
 
 
-<section class="stats">
-  <div class="card">
-    <h3>🔥 Calories</h3>
-    <p>1850 / 2200</p>
-  </div>
-  <div class="card">
-    <h3>🚶‍♂️ Steps</h3>
-    <p>7,200 / 10,000</p>
-  </div>
-  <div class="card">
-    <h3>💧 Water</h3>
-    <p>6 / 8 cups</p>
-  </div>
-  <div class="card">
-    <h3>😴 Sleep</h3>
-    <p>7 hours</p>
-  </div>
-</section>
 {% endblock %}

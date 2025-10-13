@@ -1,14 +1,11 @@
 /* ===== GENERAL PAGE ===== */
 body {
-  background: url('../images/activity-bg.avif') no-repeat center center fixed;
-  background-size: cover;
-  font-family: 'Poppins', sans-serif;
-  color: #222;
-  margin: 0;
-  padding: 0;
+    background: url('images/meals-bg.jpg') no-repeat center center fixed;
+    background-size: cover; 
+    font-family: 'Poppins', sans-serif;
 }
 
-.profile-wrapper {
+.meal-wrapper {
   display: flex;
   flex-direction: column;
   gap: 40px;
@@ -27,65 +24,22 @@ body {
   box-shadow: 0 10px 40px rgba(0,0,0,0.25);
 }
 
-/* ===== PROFILE INFO ===== */
-.profile-container {
+/* ===== PAGE HEADER ===== */
+.meal-header {
   text-align: center;
-}
-
-.profile-container h2 {
   color: #004d40;
-  margin-bottom: 20px;
   font-size: 1.8rem;
-}
-
-.profile-field {
-  margin: 10px 0;
-  font-size: 1rem;
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-}
-
-.profile-field label {
-  font-weight: 600;
-  color: #222222;
-}
-
-.profile-field span {
-  color: #222222;
-}
-
-.edit-btn {
-  display: inline-block;
-  background: linear-gradient(90deg, #00c4a7, #00796b);
-  color: #fff;
-  padding: 10px 18px;
-  border-radius: 8px;
-  text-decoration: none;
-  margin-top: 20px;
-  font-weight: 600;
-  transition: 0.3s;
-}
-
-.edit-btn:hover {
-  transform: scale(1.05);
-}
-
-/* ===== ACTIVITY SECTION ===== */
-.history-header {
-  text-align: center;
-  color: #004d40;
-  font-size: 1.6rem;
   margin-bottom: 25px;
 }
 
-.activity-cards {
+/* ===== MEAL LIST ===== */
+.meal-cards {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
   gap: 20px;
 }
 
-.activity-card {
+.meal-card {
   background: rgba(255, 255, 255, 0.3);
   border-radius: 14px;
   padding: 20px;
@@ -94,22 +48,22 @@ body {
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.activity-card:hover {
+.meal-card:hover {
   transform: scale(1.03);
   box-shadow: 0 8px 20px rgba(0,0,0,0.25);
 }
 
-.activity-card h3 {
+.meal-card h3 {
   color: #004d40;
   margin-bottom: 10px;
 }
 
-.activity-card p {
+.meal-card p {
   margin: 5px 0;
 }
 
 /* ===== BUTTONS ===== */
-.delete-btn, .cancel-btn, .add-activity-btn {
+.edit-btn, .delete-btn, .add-meal-btn, .cancel-btn {
   display: inline-block;
   padding: 10px 18px;
   border-radius: 8px;
@@ -122,6 +76,15 @@ body {
   transition: 0.3s ease;
 }
 
+.edit-btn {
+  background: linear-gradient(90deg, #00c4a7, #00796b);
+  color: #fff;
+}
+
+.edit-btn:hover {
+  transform: scale(1.05);
+}
+
 .delete-btn {
   background: linear-gradient(90deg, #ff6b6b, #d32f2f);
   color: #fff;
@@ -131,21 +94,21 @@ body {
   transform: scale(1.05);
 }
 
+.add-meal-btn {
+  background: linear-gradient(90deg, #f5af19, #f12711);
+  color: #fff;
+}
+
+.add-meal-btn:hover {
+  transform: scale(1.05);
+}
+
 .cancel-btn {
   background: linear-gradient(90deg, #00c4a7, #00796b);
   color: #fff;
 }
 
 .cancel-btn:hover {
-  transform: scale(1.05);
-}
-
-.add-activity-btn {
-  background: linear-gradient(90deg, #f5af19, #f12711);
-  color: #fff;
-}
-
-.add-activity-btn:hover {
   transform: scale(1.05);
 }
 
@@ -204,8 +167,8 @@ body {
   justify-content: center;
 }
 
-/* ===== NO ACTIVITIES ===== */
-.no-activities {
+/* ===== NO MEALS ===== */
+.no-meals {
   text-align: center;
   color: #222222;
   font-size: 1.1rem;
@@ -213,15 +176,27 @@ body {
 }
 
 /* ===== ADD BUTTON CONTAINER ===== */
-.add-activity-container {
+.add-meal-container {
   text-align: center;
   margin-top: 25px;
 }
 
+/* ===== FORM STYLING ===== */
+form input, form textarea, form select {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0 16px 0;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+form button {
+  width: auto;
+}
+
 /* ===== RESPONSIVE ===== */
 @media (max-width: 600px) {
-  .profile-field {
-    flex-direction: column;
-    align-items: center;
+  .meal-card p {
+    font-size: 0.9rem;
   }
 }

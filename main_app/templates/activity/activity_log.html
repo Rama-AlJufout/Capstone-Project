@@ -33,11 +33,9 @@
 
           <div class="activity-actions">
             <a href="{% url 'activity_update' activity.pk %}" class="edit-btn">Edit</a>
-            <form method= "POST" action="{% url 'activity_delete' activity.pk %}" method="POST" style="display:inline;">
-              {% csrf_token %}
-              <button type="submit" class="delete-btn">Delete</button>
-            </form>
+            <a href="{% url 'activity_delete' activity.pk %}" class="delete-btn">Delete</a>
           </div>
+
         </div>
         {% endfor %}
       </div>

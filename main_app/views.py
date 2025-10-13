@@ -1,18 +1,12 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import ActivityLog
-from .forms import CustomUserCreationForm, CustomUserUpdate, ActivityLogForm
+from .models import ActivityLog, MealLog
+from .forms import CustomUserCreationForm, CustomUserUpdate, ActivityLogForm, MealLogForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import SetPasswordForm
-# from .forms import SignUpForm
-# from django.contrib.auth import login
-
 
 def home(request):
     return render(request, "home.html")
-
-def about(request):
-    return render(request, 'about.html')
 
 def register(request):
     if request.method == 'POST':
@@ -107,3 +101,45 @@ def activity_delete(request, pk):
     return render(request, 'activity/activity_confirm_delete.html', {
         'activity': activity
     })
+
+@login_required
+def meal_list(request):
+    # List
+    meals = MealLog.objects.filter(user=request.user).order_by('-date')
+    return render(request, 'meals/meal_list.html', {'meals': meals})
+
+@login_required
+def meal_create(request):
+    # Create 
+    if request.method == 'POST':
+        form = MealLogForm(request.POST)
+        if form.is_valid():
+            meal = form.save(commit=False)
+            meal.user = request.user
+            meal.save()
+            return redirect('meal_list')
+    else:
+        form = MealLogForm()
+    return render(request, 'meals/meal_form.html', {'form': form, 'title': 'Add Meal'})
+
+@login_required
+def meal_update(request, pk):
+    # Update
+    meal = get_object_or_404(MealLog, pk=pk, user=request.user)
+    if request.method == 'POST':
+        form = MealLogForm(request.POST, instance=meal)
+        if form.is_valid():
+            form.save()
+            return redirect('meal_list')
+    else:
+        form = MealLogForm(instance=meal)
+    return render(request, 'meals/meal_form.html', {'form': form, 'title': 'Edit Meal'})
+
+@login_required
+def meal_delete(request, pk):
+    # Delete
+    meal = get_object_or_404(MealLog, pk=pk, user=request.user)
+    if request.method == 'POST':
+        meal.delete()
+        return redirect('meal_list')
+    return render(request, 'meals/meal_confirm_delete.html', {'meal': meal})

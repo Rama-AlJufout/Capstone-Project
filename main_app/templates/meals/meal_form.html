@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/meals/meal.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="meal-wrapper">
+    <div class="glass-card">
+        <h2 class="meal-header">{{ title }}</h2>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="add-meal-btn">Save</button>
+        </form>
+        <div class="add-meal-container">
+            <a href="{% url 'meal_list' %}" class="cancel-btn">Back to Meals</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

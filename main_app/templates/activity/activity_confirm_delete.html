@@ -9,7 +9,7 @@
 <div class="confirm-delete-container">
   <div class="confirm-card">
     <h2>Confirm Delete</h2>
-    <p>Are you sure you want to delete the activity <strong>{{ activity.get_activity_type_display }}</strong>?</p>
+    <p>Are you sure you want to delete <strong>{{ activity.get_activity_type_display }}</strong>?</p>
     <p><em>Date:</em> {{ activity.date|date:"M. d, Y" }}</p>
 
     <form method="POST">

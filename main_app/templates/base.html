@@ -31,12 +31,14 @@
 
         <nav>
             <ul>
-                <li><a href="{% url 'home' %}">Home</a></li>
-                <li><a href="{% url 'about' %}">About</a></li>
+                <li><a href="{% url 'home' %}#home">Home</a></li>
+                <li><a href="{% url 'home' %}#about">About</a></li>
+                <li><a href="{% url 'home' %}#contact">Contact</a></li>
 
                 {% if user.is_authenticated %}
                     <li><a href="{% url 'profile' %}">Profile</a></li>
                     <li><a href="{% url 'activity_log' %}">Activity</a></li>
+                    <li><a href="{% url 'meal_list' %}"> Meal</a></li>
                     <li>
                         <form method="post" action="{% url 'logout' %}">
                             {% csrf_token %}
