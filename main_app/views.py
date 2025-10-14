@@ -105,24 +105,23 @@ def activity_delete(request, pk):
 
 
 @login_required
-def meal_list(request):
-    # List
-    meals = MealLog.objects.filter(user=request.user).order_by('-date')
-    return render(request, 'meals/meal_list.html', {'meals': meals})
+def meal_log_view(request):
+    # Create + Read
+    user = request.user
+    meals = MealLog.objects.filter(user=user).order_by('-date')
 
-@login_required
-def meal_create(request):
-    # Create 
     if request.method == 'POST':
         form = MealLogForm(request.POST)
         if form.is_valid():
             meal = form.save(commit=False)
-            meal.user = request.user
+            meal.user = user
             meal.save()
-            return redirect('meal_list')
+            messages.success(request, 'Meal added successfully!')
+            return redirect('meal_log')
     else:
         form = MealLogForm()
-    return render(request, 'meals/meal_form.html', {'form': form, 'title': 'Add Meal'})
+
+    return render(request, 'meals/meal_log.html', {'form': form, 'meals': meals})
 
 @login_required
 def meal_update(request, pk):
@@ -148,24 +147,23 @@ def meal_delete(request, pk):
 
 
 @login_required
-def journal_create(request):
-    # Create
+def journal_log_view(request):
+    # Create + Read
+    user = request.user
+    journals = JournalEntry.objects.filter(user=user).order_by('-date')
+    
     if request.method == 'POST':
         form = JournalEntryForm(request.POST)
         if form.is_valid():
             journal = form.save(commit=False)
             journal.user = request.user
             journal.save()
-            return redirect('journal_list')
+            messages.success(request, 'Meal added successfully!')
+            return redirect('journal_log')
     else:
         form = JournalEntryForm()
-    return render(request, 'journal/journal_form.html', {'form': form, 'title': 'Add Journal Entry'})
 
-@login_required
-def journal_list(request):
-    # READ 
-    journals = JournalEntry.objects.filter(user=request.user).order_by('-date')
-    return render(request, 'journal/journal_list.html', {'journals': journals})
+    return render(request, 'journal/journal_log.html', {'form': form, 'journal': journals})
 
 @login_required
 def journal_update(request, pk):

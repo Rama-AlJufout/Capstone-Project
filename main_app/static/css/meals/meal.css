@@ -1,222 +1,308 @@
-/* ===== GENERAL PAGE ===== */
+/* ================= MEALS PAGE ================= */
+
+/* ===== PAGE BACKGROUND ===== */
 body {
-    background: url('../images/meals-bg.avif') no-repeat center center fixed;
-    background-size: cover;
-    font-family: 'Poppins', sans-serif;
-    color: #222;
-    margin: 0;
-    padding: 0;
+  background: url('../images/meals-bg.jpg') no-repeat center center fixed;
+  background-size: cover;
+  font-family: 'Poppins', sans-serif;
+  color: #222;
+  margin: 0;
+  padding: 0;
+}
+
+/* ===== HEADER ===== */
+.meal-header {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto 25px auto;
+  padding: 15px 25px;
+  text-align: center;
+  background: rgba(255,255,255,0.35);
+  backdrop-filter: blur(15px);
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.3);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #004d40;
 }
 
 /* ===== WRAPPER ===== */
 .meal-wrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
-    max-width: 1000px;
-    margin: 80px auto;
-    padding: 20px;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 50px;
+  padding: 80px 20px;
+  min-height: 100vh;
 }
 
-/* ===== GLASS CARD STYLE ===== */
-.glass-card {
-    background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(15px);
-    border-radius: 16px;
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    padding: 25px 30px;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.25);
-}
-
-/* ===== PAGE HEADER ===== */
-.meal-header {
-    width: 100%;
-    max-width: 1000px;
-    margin: 0 auto 20px auto;
-    padding: 15px 25px;
-    text-align: center;
-    background: rgba(255, 255, 255, 0.35);
-    backdrop-filter: blur(15px);
-    border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-    font-size: 1.8rem;
-    font-weight: 600;
-    color: #004d40;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
-}
-
-/* ===== MEAL LIST ===== */
+/* ===== MEAL CARDS ===== */
 .meal-cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
-    gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+  width: 100%;
+  max-width: 1000px;
+  margin-bottom: 50px;
 }
 
 .meal-card {
-    background: rgba(255, 255, 255, 0.3);
-    border-radius: 14px;
-    padding: 20px;
-    text-align: center;
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  background: rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(15px);
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.3);
+  padding: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+  text-align: center;
 }
 
 .meal-card:hover {
-    transform: scale(1.03);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.25);
 }
 
 .meal-card h3 {
-    color: #004d40;
-    margin-bottom: 10px;
+  color: #004d40;
+  margin-bottom: 10px;
+  font-size: 1.3rem;
+  font-weight: 600;
 }
 
 .meal-card p {
-    margin: 5px 0;
+  color: #222;
+  margin: 6px 0;
+  font-size: 0.95rem;
 }
 
-/* ===== BUTTONS ===== */
-.edit-btn, .delete-btn, .add-meal-btn, .cancel-btn {
-    display: inline-block;
-    padding: 10px 18px;
-    border-radius: 8px;
-    font-weight: 600;
-    font-size: 0.95rem;
-    text-align: center;
-    text-decoration: none;
-    border: none;
-    cursor: pointer;
-    transition: 0.3s ease;
+/* ===== ACTION BUTTONS (Edit/Delete) ===== */
+.meal-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  margin-top: 14px;
 }
 
-.edit-btn {
-    background: linear-gradient(90deg, #00c4a7, #00796b);
-    color: #fff;
-}
-
-.edit-btn:hover {
-    transform: scale(1.05);
-}
-
+.edit-btn,
 .delete-btn {
-    background: linear-gradient(90deg, #ff6b6b, #d32f2f);
-    color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 16px;
+  border-radius: 10px;
+  border: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  text-decoration: none;
+  color: #fff;
 }
 
+/* Edit */
+.edit-btn {
+  background: linear-gradient(90deg, #00c4a7, #00796b);
+  box-shadow: 0 6px 18px rgba(0, 196, 167, 0.15);
+}
+.edit-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 24px rgba(0, 121, 107, 0.25);
+}
+
+/* Delete */
+.delete-btn {
+  background: linear-gradient(90deg, #ff6b6b, #d32f2f);
+  box-shadow: 0 6px 18px rgba(217, 83, 79, 0.15);
+}
 .delete-btn:hover {
-    transform: scale(1.05);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 24px rgba(181, 43, 39, 0.25);
 }
 
-.add-meal-btn {
-    background: linear-gradient(90deg, #f5af19, #f12711);
-    color: #fff;
+/* ===== FORM CONTAINER ===== */
+.form-container {
+  max-width: 500px;
+  width: 100%;
+  padding: 35px;
+  background: rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(15px);
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.3);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.add-meal-btn:hover {
-    transform: scale(1.05);
+.form-container:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.15);
 }
 
-.cancel-btn {
-    background: linear-gradient(90deg, #00c4a7, #00796b);
-    color: #fff;
+.form-container h2 {
+  color: #004d40;
+  margin-bottom: 25px;
+  font-weight: 600;
+  font-size: 1.8rem;
 }
 
-.cancel-btn:hover {
-    transform: scale(1.05);
+.form-container input,
+.form-container select,
+.form-container textarea {
+  width: 100%;
+  padding: 14px 18px;
+  margin: 10px 0 20px 0;
+  border: none;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.85);
+  outline: none;
+  font-size: 1rem;
+  transition: box-shadow 0.3s ease;
 }
 
-/* ===== CONFIRM DELETE MODAL ===== */
-.confirm-delete-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.6);
-    display: none;
-    justify-content: center;
-    align-items: center;
-    z-index: 999;
-    padding: 20px;
+.form-container input:focus,
+.form-container select:focus,
+.form-container textarea:focus {
+  box-shadow: 0 0 8px #00c4a7;
 }
 
-.confirm-delete-container:target {
-    display: flex;
+.form-container button {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(90deg, #00c4a7, #00796b);
+  color: #222;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.3s ease, transform 0.2s ease;
 }
 
-.confirm-card {
-    background: rgba(255, 255, 255, 0.35);
-    backdrop-filter: blur(20px);
-    border-radius: 20px;
-    border: 1px solid rgba(255,255,255,0.3);
-    box-shadow: 0 10px 40px rgba(0,0,0,0.25);
-    padding: 30px 25px;
-    max-width: 400px;
-    width: 100%;
-    text-align: center;
-    animation: popup 0.3s ease;
-}
-
-@keyframes popup {
-    from { transform: scale(0.7); opacity: 0; }
-    to { transform: scale(1); opacity: 1; }
-}
-
-.confirm-card h2 {
-    color: #004d40;
-    margin-bottom: 15px;
-    font-size: 1.6rem;
-}
-
-.confirm-card p {
-    margin-bottom: 25px;
-    font-size: 1rem;
-    color: #222;
-}
-
-.confirm-actions {
-    display: flex;
-    gap: 12px;
-    justify-content: center;
+.form-container button:hover {
+  background: linear-gradient(90deg, #00796b, #00c4a7);
+  transform: scale(1.03);
 }
 
 /* ===== NO MEALS ===== */
 .no-meals {
-    text-align: center;
-    color: #222;
-    font-size: 1.1rem;
-    margin-top: 10px;
+  background: rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(15px);
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.3);
+  padding: 25px;
+  text-align: center;
+  color: #004d40;
+  font-size: 1.1rem;
+  font-weight: 500;
 }
 
-/* ===== ADD BUTTON CONTAINER ===== */
-.add-meal-container {
-    text-align: center;
-    margin-top: 25px;
+/* ===== CONFIRM DELETE MODAL ===== */
+.confirm-delete-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  padding: 20px;
 }
 
-/* ===== FORM STYLING ===== */
-form input, form textarea, form select {
-    width: 100%;
-    padding: 10px;
-    margin: 8px 0 16px 0;
-    border: 1px solid #ccc;
-    border-radius: 8px;
+.confirm-delete-container:target {
+  display: flex;
 }
 
-form button {
-    width: auto;
+.confirm-card {
+  background: rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(20px);
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.3);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.25);
+  padding: 30px 25px;
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+  animation: popup 0.3s ease;
+}
+
+@keyframes popup {
+  from { transform: scale(0.7); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.confirm-card::before {
+  content: "🍽️";
+  display: block;
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+  animation: shake 1s ease-in-out infinite alternate;
+}
+
+@keyframes shake {
+  0% { transform: rotate(-5deg); }
+  100% { transform: rotate(5deg); }
+}
+
+.confirm-card h2 {
+  color: #004d40;
+  margin-bottom: 15px;
+  font-size: 1.6rem;
+}
+
+.confirm-card p {
+  margin-bottom: 25px;
+  font-size: 1.05rem;
+  color: #222;
+}
+
+.confirm-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.confirm-card .delete-btn,
+.confirm-card .cancel-btn {
+  padding: 12px 28px;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.25s ease;
+}
+
+.confirm-card .delete-btn {
+  background: linear-gradient(90deg, #ff4b5c, #d9534f);
+  color: #fff;
+}
+.confirm-card .delete-btn:hover {
+  transform: scale(1.05);
+}
+
+.confirm-card .cancel-btn {
+  background: linear-gradient(90deg, #00c4a7, #00796b);
+  color: #fff;
+}
+.confirm-card .cancel-btn:hover {
+  transform: scale(1.05);
 }
 
 /* ===== RESPONSIVE ===== */
-@media (max-width: 600px) {
-    .meal-card p {
-        font-size: 0.9rem;
-    }
-    .meal-cards {
-        grid-template-columns: 1fr;
-    }
-    .confirm-actions {
-        flex-direction: column;
-    }
+@media (max-width: 768px) {
+  .meal-cards {
+    grid-template-columns: 1fr;
+  }
+  .confirm-actions {
+    flex-direction: column;
+  }
+  .form-container {
+    padding: 25px;
+  }
 }

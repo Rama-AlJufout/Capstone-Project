@@ -1,6 +1,6 @@
 /* ===== GENERAL PAGE ===== */
-body.journal-page {
-    background: url('../images/journal-bg.jpg') no-repeat center center fixed;
+body {
+    background: url('../images/journal-bg.avif') no-repeat center center fixed;
     background-size: cover;
     font-family: 'Poppins', sans-serif;
     margin: 0;
@@ -16,6 +16,7 @@ body.journal-page {
     max-width: 1000px;
     margin: 80px auto;
     padding: 20px;
+    z-index: 1;
 }
 
 /* ===== HEADER ===== */
@@ -36,10 +37,10 @@ body.journal-page {
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
 }
 
-/* ===== GLASS CARD STYLE ===== */
+/* ===== JOURNAL CARDS ===== */
 .journal-cards {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
     gap: 20px;
 }
 
@@ -47,15 +48,15 @@ body.journal-page {
     background: rgba(255, 255, 255, 0.35);
     backdrop-filter: blur(15px);
     border-radius: 16px;
-    border: 1px solid rgba(255,255,255,0.3);
-    padding: 20px;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.25);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 25px 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .journal-card:hover {
     transform: scale(1.03);
-    box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
 }
 
 .journal-card h3 {
@@ -65,6 +66,7 @@ body.journal-page {
 
 .journal-card p {
     margin: 5px 0;
+    color: #222;
 }
 
 /* ===== FORM CONTAINER ===== */
@@ -72,13 +74,19 @@ body.journal-page {
     max-width: 500px;
     width: 100%;
     padding: 35px;
-    background: rgba(255,255,255,0.35);
+    background: rgba(255, 255, 255, 0.35);
     backdrop-filter: blur(15px);
     border-radius: 16px;
-    border: 1px solid rgba(255,255,255,0.3);
-    box-shadow: 0 10px 40px rgba(0,0,0,0.25);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
     margin: 0 auto;
     text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
 }
 
 .form-container h2 {
@@ -86,19 +94,21 @@ body.journal-page {
     font-size: 1.8rem;
     font-weight: 600;
     color: #004d40;
-    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .form-container input,
 .form-container textarea,
 .form-container select {
     width: 100%;
-    padding: 12px 14px;
+    padding: 14px 16px;
     margin: 10px 0 20px 0;
-    border: 1px solid #ccc;
-    border-radius: 10px;
+    border: none;
+    border-radius: 12px;
     outline: none;
     font-size: 1rem;
+    background: rgba(255, 255, 255, 0.85);
+    transition: box-shadow 0.3s ease;
 }
 
 .form-container input:focus,
@@ -110,7 +120,7 @@ body.journal-page {
 .form-container button {
     width: 100%;
     padding: 14px;
-    background: linear-gradient(90deg, #f5af19, #f12711);
+    background: linear-gradient(90deg, #00c4a7, #00796b);
     color: #fff;
     font-size: 1.1rem;
     border: none;
@@ -125,63 +135,43 @@ body.journal-page {
     transform: scale(1.03);
 }
 
-/* ===== EMPTY STATE ===== */
-.empty-journal {
-    text-align: center;
-    font-size: 1.1rem;
-    color: #222;
-    padding: 20px;
-    background: rgba(255,255,255,0.35);
-    border-radius: 16px;
-    border: 1px solid rgba(255,255,255,0.3);
-    box-shadow: 0 10px 40px rgba(0,0,0,0.15);
-}
-
-/* ===== JOURNAL-STYLE BUTTONS ===== */
-/* .journal-actions {
-    display: flex;
-    gap: 10px;
-    justify-content: flex-end;
-    margin-top: 14px;
-} */
-
+/* ===== ACTION BUTTONS ===== */
 .edit-btn,
 .delete-btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 8px;
-    padding: 8px 14px;
+    padding: 10px 18px;
     border-radius: 10px;
-    border: none;
     font-weight: 600;
     font-size: 0.95rem;
     cursor: pointer;
     text-decoration: none;
+    border: none;
     transition: transform 0.12s ease, box-shadow 0.12s ease;
 }
 
 .edit-btn {
     background: linear-gradient(90deg, #00c4a7, #00796b);
     color: #fff;
-    box-shadow: 0 6px 18px rgba(0,196,167,0.12);
+    box-shadow: 0 6px 18px rgba(0, 196, 167, 0.12);
 }
 
 .edit-btn:hover {
     transform: translateY(-3px);
-    box-shadow: 0 12px 24px rgba(0,121,107,0.16);
+    box-shadow: 0 12px 24px rgba(0, 121, 107, 0.16);
 }
 
 .delete-btn {
-    background: #d9534f;
+    background: linear-gradient(90deg, #ff4b5c, #d9534f);
     color: #fff;
-    box-shadow: 0 6px 18px rgba(217,83,79,0.12);
-    border: 1px solid rgba(0,0,0,0.03);
+    box-shadow: 0 6px 18px rgba(217, 83, 79, 0.12);
 }
 
 .delete-btn:hover {
     transform: translateY(-3px);
-    box-shadow: 0 12px 24px rgba(181,43,39,0.16);
+    box-shadow: 0 12px 24px rgba(181, 43, 39, 0.16);
 }
 
 /* ===== CONFIRM DELETE MODAL ===== */
@@ -216,11 +206,6 @@ body.journal-page {
     animation: popup 0.3s ease;
 }
 
-@keyframes popup {
-    from { transform: scale(0.7); opacity: 0; }
-    to { transform: scale(1); opacity: 1; }
-}
-
 .confirm-card h2 {
     color: #004d40;
     margin-bottom: 15px;
@@ -239,16 +224,41 @@ body.journal-page {
     justify-content: center;
 }
 
+/* ===== EMPTY STATE ===== */
+.empty-journal {
+    text-align: center;
+    font-size: 1.1rem;
+    color: #222;
+    padding: 20px;
+    background: rgba(255,255,255,0.35);
+    border-radius: 16px;
+    border: 1px solid rgba(255,255,255,0.3);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+}
+
 /* ===== RESPONSIVE ===== */
 @media (max-width: 600px) {
     .journal-cards {
         grid-template-columns: 1fr;
     }
-    .activity-actions {
-        flex-direction: column;
+
+    .form-container {
+        padding: 25px;
     }
+
     .edit-btn, .delete-btn {
         width: 100%;
         justify-content: center;
     }
+
+    .confirm-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}
+
+/* ===== ANIMATION ===== */
+@keyframes popup {
+    from { transform: scale(0.7); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
 }

@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/meals/meal.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="meal-wrapper">
+
+  {% if meals %}
+    <!-- ===== Meal History ===== -->
+    <div class="history-container">
+      <h2 class="meal-header">Meal History</h2>
+      <div class="meal-cards">
+        {% for meal in meals %}
+        <div class="meal-card glass-card">
+          <h3>{{ meal.get_meal_type_display }}</h3>
+          <p><strong>Date:</strong> {{ meal.date|date:"M. d, Y" }}</p>
+          <p><strong>Food Items:</strong> {{ meal.food_items }}</p>
+          <p><strong>Calories:</strong> {{ meal.calories }} kcal</p>
+
+          <!-- ===== Action Buttons ===== -->
+          <div class="confirm-actions">
+            <a href="{% url 'meal_update' meal.pk %}" class="edit-btn">Edit</a>
+            <a href="#delete-{{ meal.pk }}" class="delete-btn">Delete</a>
+          </div>
+        </div>
+
+        <!-- ===== Delete Confirmation Modal ===== -->
+        <div id="delete-{{ meal.pk }}" class="confirm-delete-container">
+          <div class="confirm-card glass-card">
+              <h2>Confirm Delete</h2>
+              <p>Are you sure you want to delete this meal?</p>
+              <div class="confirm-actions">
+                  <form method="POST" action="{% url 'meal_delete' meal.pk %}">
+                      {% csrf_token %}
+                      <button type="submit" class="delete-btn">Yes, Delete</button>
+                  </form>
+                  <a href="#" class="cancel-btn">Cancel</a>
+              </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- ===== Add Meal Form ===== -->
+    <div class="form-container glass-card">
+      <h2>Add New Meal</h2>
+      <form method="POST">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+
+        <div class="form-group">
+          {{ form.meal_type.label_tag }}
+          {{ form.meal_type }}
+        </div>
+
+        <div class="form-group">
+          {{ form.date.label_tag }}
+          {{ form.date }}
+        </div>
+
+        <div class="form-group">
+          {{ form.food_items.label_tag }}
+          {{ form.food_items }}
+        </div>
+
+        <div class="form-group">
+          {{ form.calories.label_tag }}
+          {{ form.calories }}
+        </div>
+
+        <button type="submit">Add Meal</button>
+      </form>
+    </div>
+
+  {% else %}
+    <!-- ===== No Meals Yet ===== -->
+    <div class="form-container glass-card">
+      <h2>Log Your First Meal</h2>
+      <form method="POST">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+
+        <div class="form-group">
+          {{ form.meal_type.label_tag }}
+          {{ form.meal_type }}
+        </div>
+
+        <div class="form-group">
+          {{ form.date.label_tag }}
+          {{ form.date }}
+        </div>
+
+        <div class="form-group">
+          {{ form.food_items.label_tag }}
+          {{ form.food_items }}
+        </div>
+
+        <div class="form-group">
+          {{ form.calories.label_tag }}
+          {{ form.calories }}
+        </div>
+
+        <button type="submit">Add Meal</button>
+      </form>
+    </div>
+  {% endif %}
+
+</div>
+{% endblock %}

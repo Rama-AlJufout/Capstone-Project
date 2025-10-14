@@ -102,19 +102,26 @@ body {
 
 /* ===== CONTACT SECTION ===== */
 #contact {
-    background-color: #e6f2ef; /* fallback background */
-    width: 100%;
-    padding: 40px 20px;
+  background-color: #e6f2ef;
+  width: 100%;
+  min-height: 100vh; 
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  padding: 40px 20px;
+  box-sizing: border-box;
 }
 
-/* Flex container for form + image */
+/* ===== CONTACT CONTAINER ===== */
 .contact-container {
-    display: flex;
-    flex-wrap: wrap; /* stack on smaller screens */
-    gap: 40px;
-    justify-content: center;
-    align-items: flex-start;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  justify-content: center;
+  align-items: center; 
+  max-width: 1000px; 
 }
+
 
 /* ===== CONTACT FORM ===== */
 .contact-form {
@@ -131,7 +138,7 @@ body {
 .contact-form h2 {
     text-align: center;
     margin-bottom: 20px;
-    color: #2e7d32;
+    color: #4f7350;
     font-size: 1.8rem;
 }
 

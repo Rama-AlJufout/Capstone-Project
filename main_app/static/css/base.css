@@ -1,4 +1,4 @@
-/* ================= RESET + FULLSCREEN FIX ================= */
+/* ================= RESET + BASE ================= */
 * {
   margin: 0;
   padding: 0;
@@ -10,103 +10,31 @@ html, body {
   width: 100%;
   overflow-x: hidden;
   font-family: 'Poppins', sans-serif;
-  color: #333;
+  color: #fff;
+  scroll-behavior: smooth;
   display: flex;
   flex-direction: column;
-  scroll-behavior: smooth;
-}
-
-/* ================= VIDEO BACKGROUND  ================= */
-body::before {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -2;
-}
-
-/* Overlay to make text readable */
-body::after {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 50, 50, 0.5);
-  z-index: -1;
 }
 
 /* ================= NAVBAR ================= */
 .navbar {
-  background: rgba(0, 0, 0, 0.5); 
+  background: rgba(0, 0, 0, 0.5);
   padding: 15px 40px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: absolute;
+  position: fixed;
   top: 0;
   width: 100%;
-  z-index: 5;
-  backdrop-filter: blur(10px); /* glass effect */
+  z-index: 10;
+  backdrop-filter: blur(10px);
 }
 
-/* Navbar links */
-.navbar nav ul {
-  display: flex;
-  list-style: none;
-  gap: 15px;
-  align-items: center;
-  margin: 0;
-  padding: 0;
-}
-
-.navbar nav ul li a {
-  color: #ffff;
-  text-decoration: none;
-  font-weight: 500;
-  transition: 0.3s;
-}
-
-.navbar nav ul li a:hover {
-  color: #7fffd4;
-}
-
-.navbar nav ul li form button.btn {
-  padding: 8px 20px;
-  border-radius: 25px;
-  font-weight: 500;
-  font-size: 0.9rem;
-  transition: 0.3s;
-}
-
-.navbar nav ul li form button.btn:hover {
-  background-color: #00c4a7;
-  transform: scale(1.05);
-}
-
-
-/* ================= LOGO + TITLE ================= */
+/* LOGO + TITLE */
 .logo-title {
-  display: flex;          
-  align-items: center;    
-  gap: 10px;              
-}
-
-.logo-title h2 a {
-  text-decoration: none;
-  color: #ffff;
-  font-weight: 600;
-  font-size: 1.5rem;
-  transition: 0.3s;
-}
-
-.logo-title h2 a:hover {
-  color: #7fffd4;
-  text-shadow: 0 0 10px rgba(127, 255, 212, 0.6);
-  transform: scale(1.05);
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .logo svg {
@@ -119,22 +47,64 @@ body::after {
   stroke-dashoffset: 200;
   animation: draw 1.2s linear infinite;
 }
-
 @keyframes draw {
   0% { stroke-dashoffset: 200; }
   100% { stroke-dashoffset: 0; }
 }
 
+.logo-title h2 a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: 600;
+  font-size: 1.5rem;
+  transition: 0.3s;
+}
+.logo-title h2 a:hover {
+  color: #7fffd4;
+  text-shadow: 0 0 10px rgba(127, 255, 212, 0.6);
+}
+
+/* ================= NAV LINKS ================= */
+.navbar nav ul {
+  display: flex;
+  list-style: none;
+  gap: 25px;
+  align-items: center;
+}
+
+.navbar nav ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  transition: 0.3s;
+}
+.navbar nav ul li a:hover {
+  color: #7fffd4;
+}
+
+.navbar nav ul li form button.btn {
+  padding: 8px 20px;
+  border-radius: 25px;
+  background-color: #00c4a7;
+  border: none;
+  color: #fff;
+  transition: 0.3s;
+}
+.navbar nav ul li form button.btn:hover {
+  background-color: #00d9b2;
+  transform: scale(1.05);
+}
+
 /* ================= MAIN CONTENT ================= */
 main {
-  flex: 1; /* Take up remaining space */
-  margin: 0;
-  padding: 0;
+  flex: 1; 
+  padding-top: 100px;
+  text-align: center;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start; /* content starts below navbar */
+  justify-content: center; 
   align-items: center;
-  padding-top: 100px; /* push below navbar */
+  width: 100%;
 }
 
 /* ================= FOOTER ================= */
@@ -143,46 +113,102 @@ footer {
   padding: 20px;
   background: rgba(0, 0, 0, 0.5);
   color: #e6ffe6;
-  z-index: 2;
   backdrop-filter: blur(10px);
+  width: 100%;
+  margin-top: auto; 
 }
 
-/* ================= BUTTONS ================= */
-button, .btn {
-  background-color: #00c4a7;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 25px;
+/* ================= HAMBURGER MENU ================= */
+.menu-icon {
+  display: none;
+  flex-direction: column;
   cursor: pointer;
+  gap: 6px;
+}
+
+.menu-icon span {
+  width: 25px;
+  height: 3px;
+  background-color: #fff;
+  border-radius: 3px;
   transition: 0.3s;
 }
 
-button:hover, .btn:hover {
-  background-color: #00c4a7;
+/* Hide checkbox */
+#menu-toggle {
+  display: none;
 }
 
-/* ================= MEDIA QUERIES ================= */
+/* ========== Responsive Menu Behavior ========== */
 @media (max-width: 768px) {
-  .logo-title {
-    gap: 5px;
+  .navbar {
+    flex-wrap: wrap;
+    padding: 15px 25px;
   }
 
-  .navbar {
+  .menu-icon {
+    display: flex;
+  }
+
+  nav {
+    width: 100%;
+    display: none;
+  }
+
+  #menu-toggle:checked + .menu-icon + nav {
+    display: block;
+    width: 100%;
+    animation: fadeIn 0.3s ease-in-out;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  nav ul {
     flex-direction: column;
     align-items: flex-start;
-    padding: 10px 20px;
-  }
-
-  .navbar nav {
+    width: 100%;
+    gap: 10px;
     margin-top: 10px;
   }
 
-  .logo-title h2 a {
-    font-size: 1.3rem;
+  nav ul li {
+    width: 100%;
   }
 
-  main {
-    padding-top: 120px; /* more space for mobile navbar */
+  nav ul li a,
+  nav ul li form button.btn {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 10px 0;
+    border-radius: 5px;
+  }
+
+  /* Animate hamburger icon into X */
+  #menu-toggle:checked + .menu-icon span:nth-child(1) {
+    transform: rotate(45deg) translateY(8px);
+  }
+  #menu-toggle:checked + .menu-icon span:nth-child(2) {
+    opacity: 0;
+  }
+  #menu-toggle:checked + .menu-icon span:nth-child(3) {
+    transform: rotate(-45deg) translateY(-8px);
+  }
+}
+
+/* Small Screens */
+@media (max-width: 480px) {
+  .logo svg {
+    width: 40px;
+    height: 40px;
+  }
+  .logo-title h2 a {
+    font-size: 1.1rem;
+  }
+  footer {
+    font-size: 0.9rem;
   }
 }
