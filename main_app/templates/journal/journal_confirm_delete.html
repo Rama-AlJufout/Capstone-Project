@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/journal/journal.css' %}">
+{% endblock %}
+
+{% block body_class %}journal-page{% endblock %}
+
+{% block content %}
+<div class="confirm-delete-container">
+  <div class="confirm-card">
+    <h2>Delete Journal Entry?</h2>
+    <p>Are you sure you want to delete the entry "<strong>{{ object.mood }}</strong>" dated {{ object.date }}?</p>
+    <form method="POST">
+      {% csrf_token %}
+      <button type="submit" class="delete-btn">Yes, Delete</button>
+      <a href="{% url 'journal_list' %}" class="edit-btn">Cancel</a>
+    </form>
+  </div>
+</div>
+{% endblock %}

@@ -1,8 +1,9 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from .models import CustomUser, ActivityLog
+from .models import CustomUser, ActivityLog, MealLog, JournalEntry
 
 # Register your custom user model
+@admin.register(CustomUser)
 class CustomUserAdmin(UserAdmin):
     model = CustomUser
 
@@ -30,12 +31,24 @@ class CustomUserAdmin(UserAdmin):
     # Default ordering by username
     ordering = ('username',)
 
-# Register the model with the admin
-admin.site.register(CustomUser, CustomUserAdmin)
-
 
 @admin.register(ActivityLog)
 class ActivityLogAdmin(admin.ModelAdmin):
     list_display = ('user', 'activity_type', 'duration_minutes', 'calories_burned', 'date')
     search_fields = ('user__username', 'activity_type')
     list_filter = ('activity_type', 'date')
+
+
+@admin.register(MealLog)
+class MealLogAdmin(admin.ModelAdmin):
+    list_display = ('user', 'meal_type', 'calories', 'date')
+    list_filter = ('meal_type', 'date', 'user')
+    search_fields = ('user__username', 'food_items')
+    ordering = ('-date',)
+
+
+@admin.register(JournalEntry)
+class JournalEntryAdmin(admin.ModelAdmin):
+    list_display = ('user', 'mood', 'date')
+    list_filter = ('mood', 'date')
+    search_fields = ('user__username', 'note')

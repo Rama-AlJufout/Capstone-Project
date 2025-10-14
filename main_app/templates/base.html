@@ -39,6 +39,7 @@
                     <li><a href="{% url 'profile' %}">Profile</a></li>
                     <li><a href="{% url 'activity_log' %}">Activity</a></li>
                     <li><a href="{% url 'meal_list' %}"> Meal</a></li>
+                    <li><a href="{% url 'journal_list' %}"> Journal</a></li>
                     <li>
                         <form method="post" action="{% url 'logout' %}">
                             {% csrf_token %}

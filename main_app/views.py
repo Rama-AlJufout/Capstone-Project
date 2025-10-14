@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import ActivityLog, MealLog
-from .forms import CustomUserCreationForm, CustomUserUpdate, ActivityLogForm, MealLogForm
+from .models import ActivityLog, MealLog, JournalEntry
+from .forms import CustomUserCreationForm, CustomUserUpdate, ActivityLogForm, MealLogForm, JournalEntryForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import SetPasswordForm
@@ -102,6 +102,8 @@ def activity_delete(request, pk):
         'activity': activity
     })
 
+
+
 @login_required
 def meal_list(request):
     # List
@@ -143,3 +145,46 @@ def meal_delete(request, pk):
         meal.delete()
         return redirect('meal_list')
     return render(request, 'meals/meal_confirm_delete.html', {'meal': meal})
+
+
+@login_required
+def journal_create(request):
+    # Create
+    if request.method == 'POST':
+        form = JournalEntryForm(request.POST)
+        if form.is_valid():
+            journal = form.save(commit=False)
+            journal.user = request.user
+            journal.save()
+            return redirect('journal_list')
+    else:
+        form = JournalEntryForm()
+    return render(request, 'journal/journal_form.html', {'form': form, 'title': 'Add Journal Entry'})
+
+@login_required
+def journal_list(request):
+    # READ 
+    journals = JournalEntry.objects.filter(user=request.user).order_by('-date')
+    return render(request, 'journal/journal_list.html', {'journals': journals})
+
+@login_required
+def journal_update(request, pk):
+    # UPDATE
+    journal = get_object_or_404(JournalEntry, pk=pk, user=request.user)
+    if request.method == 'POST':
+        form = JournalEntryForm(request.POST, instance=journal)
+        if form.is_valid():
+            form.save()
+            return redirect('journal_list')
+    else:
+        form = JournalEntryForm(instance=journal)
+    return render(request, 'journal/journal_form.html', {'form': form, 'title': 'Edit Journal Entry'})
+
+@login_required
+def journal_delete(request, pk):
+    # DELETE
+    journal = get_object_or_404(JournalEntry, pk=pk, user=request.user)
+    if request.method == 'POST':
+        journal.delete()
+        return redirect('journal_list')
+    return render(request, 'journal/journal_confirm_delete.html', {'journal': journal})

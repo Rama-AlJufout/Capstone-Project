@@ -34,53 +34,5 @@
 
         <a href="{% url 'update_profile' %}" class="edit-btn">Edit Profile</a>
     </div>
-
-    <!-- ===== ACTIVITY HISTORY ===== -->
-    <div class="history-container glass-card">
-        <h2 class="history-header">My Activities</h2>
-
-        {% if activities %}
-        <div class="activity-cards">
-            {% for a in activities %}
-            <div class="activity-card">
-                <h3>{{ a.get_activity_type_display }}</h3>
-                <p><strong>Duration:</strong> {{ a.duration_minutes }} minutes</p>
-                <p><strong>Calories Burned:</strong> {{ a.calories_burned }} kcal</p>
-                <p><strong>Date:</strong> {{ a.date|date:"M. d, Y" }}</p>
-
-                <div class="activity-actions">
-                    <a href="{% url 'activity_update' a.pk %}" class="edit-btn">Edit</a>
-                    <a href="#confirm-delete-{{ a.pk }}" class="delete-btn">Delete</a>
-                </div>
-            </div>
-
-            <!-- Delete Confirmation Modal -->
-            <div id="confirm-delete-{{ a.pk }}" class="confirm-delete-container">
-                <div class="confirm-card">
-                    <h2>Confirm Delete</h2>
-                    <p>Are you sure you want to delete this activity?</p>
-                    <div class="confirm-actions">
-                        <form action="{% url 'activity_delete' a.pk %}" method="POST">
-                            {% csrf_token %}
-                            <button type="submit" class="delete-btn">Yes, Delete</button>
-                        </form>
-                        <a href="#" class="cancel-btn">Cancel</a>
-                    </div>
-                </div>
-            </div>
-            {% endfor %}
-        </div>
-
-        <div class="add-activity-container">
-            <a href="{% url 'activity_log' %}" class="add-activity-btn">+ Add New Activity</a>
-        </div>
-
-        {% else %}
-        <p class="no-activities">No activities logged yet. Start by adding a new one!</p>
-        <div class="add-activity-container">
-            <a href="{% url 'activity_log' %}" class="add-activity-btn">+ Add Your First Activity</a>
-        </div>
-        {% endif %}
-    </div>
 </div>
 {% endblock %}

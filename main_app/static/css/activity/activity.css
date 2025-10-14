@@ -1,6 +1,6 @@
 /* ===== VIDEO BACKGROUND ===== */
 .video-bg {
-  position: fixed; /* video stays fixed behind everything */
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -21,26 +21,25 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0,50,50,0.55); /* slightly darker for readability */
+  background: rgba(0,50,50,0.55);
   z-index: -1;
 }
 
 /* ===== HISTORY HEADER ===== */
 .history-header {
-    width: 100%;
-    max-width: 1000px;
-    margin: 0 auto 20px auto;
-    padding: 15px 25px;
-    background: rgba(255, 255, 255, 0.35); 
-    backdrop-filter: blur(15px);
-    border-radius: 12px;
-    border: 1px solid rgba(255,255,255,0.3);
-    text-align: center;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
-    color: #004d40; 
-    font-size: 1.5rem;
-    font-weight: 600;
-    text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto 20px auto;
+  padding: 15px 25px;
+  text-align: center;
+  background: rgba(255,255,255,0.35);
+  backdrop-filter: blur(15px);
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.3);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #004d40;
 }
 
 /* ===== ACTIVITY WRAPPER ===== */
@@ -285,57 +284,59 @@
   outline-offset: 3px;
 }
 
-/* ===== DELETE CONFIRMATION MODAL (Modernized) ===== */
+/* ===== CONFIRM MODAL ===== */
 .confirm-delete-container {
-  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  display: none;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
-  padding: 30px;
-  background: rgba(0, 0, 0, 0.25);
-  backdrop-filter: blur(10px);
-  animation: fadeInBg 0.5s ease-in-out;
+  z-index: 999;
+  padding: 20px;
 }
 
-@keyframes fadeInBg {
-  from { opacity: 0; }
-  to { opacity: 1; }
+.confirm-delete-container:target {
+  display: flex;
 }
 
 .confirm-card {
-  background: rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.35);
   backdrop-filter: blur(20px);
-  border: 1px solid rgba(255,255,255,0.3);
   border-radius: 20px;
-  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.3);
-  padding: 50px 40px;
-  text-align: center;
+  border: 1px solid rgba(255,255,255,0.3);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.25);
+  padding: 30px 25px;
+  max-width: 400px;
   width: 100%;
-  max-width: 500px;
-  color: #011d18;
-  font-family: 'Poppins', sans-serif;
-  transform: translateY(20px);
-  opacity: 0;
-  animation: slideUp 0.6s ease forwards;
+  text-align: center;
+  animation: popup 0.3s ease;
 }
 
-@keyframes slideUp {
-  from {
-    transform: translateY(20px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
+@keyframes popup {
+  from { transform: scale(0.7); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
 }
 
 .confirm-card h2 {
-  color: #011d18;
+  color: #dfcab0;
   margin-bottom: 15px;
-  font-size: 2rem;
-  font-weight: 600;
-  text-shadow: 0 1px 4px rgba(0,0,0,0.4);
+  font-size: 1.6rem;
+}
+
+.confirm-card p {
+  margin-bottom: 25px;
+  font-size: 1rem;
+  color: #222222;
+}
+
+.confirm-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
 }
 
 /* Delete icon above title */

@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/journal/journal.css' %}">
+{% endblock %}
+
+{% block body_class %}journal-page{% endblock %}
+
+{% block content %}
+<div class="journal-wrapper">
+
+  <div class="journal-header">
+    {% if form.instance.pk %}Update Journal Entry{% else %}New Journal Entry{% endif %}
+  </div>
+
+  <div class="form-container">
+    <h2>{% if form.instance.pk %}Update{% else %}Add{% endif %} Entry</h2>
+    <form method="POST">
+      {% csrf_token %}
+      {{ form.non_field_errors }}
+
+      <label for="id_mood">Mood</label>
+      {{ form.mood }}
+
+      <label for="id_note">Note</label>
+      {{ form.note }}
+
+      <button type="submit">{% if form.instance.pk %}Update{% else %}Add{% endif %}</button>
+    </form>
+  </div>
+
+</div>
+{% endblock %}

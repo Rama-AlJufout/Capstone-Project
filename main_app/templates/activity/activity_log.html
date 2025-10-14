@@ -31,12 +31,28 @@
             <p><strong>Date:</strong> {{ activity.date|date:"M. d, Y" }}</p>
           </a>
 
+          <!-- ===== Action Buttons ===== -->
           <div class="activity-actions">
             <a href="{% url 'activity_update' activity.pk %}" class="edit-btn">Edit</a>
-            <a href="{% url 'activity_delete' activity.pk %}" class="delete-btn">Delete</a>
+            <a href="#confirm-delete-{{ activity.pk }}" class="delete-btn">Delete</a>
           </div>
-
         </div>
+
+        <!-- ===== Delete Confirmation Modal ===== -->
+        <div id="confirm-delete-{{ activity.pk }}" class="confirm-delete-container">
+          <div class="confirm-card">
+              <h2>Confirm Delete</h2>
+              <p>Are you sure you want to delete this activity?</p>
+              <div class="confirm-actions">
+                  <form action="{% url 'activity_delete' activity.pk %}" method="POST">
+                      {% csrf_token %}
+                      <button type="submit" class="delete-btn">Yes, Delete</button>
+                  </form>
+                  <a href="#" class="edit-btn">Cancel</a>
+              </div>
+          </div>
+        </div>
+
         {% endfor %}
       </div>
     </div>
@@ -104,5 +120,6 @@
       </form>
     </div>
   {% endif %}
+
 </div>
 {% endblock %}

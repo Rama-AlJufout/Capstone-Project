@@ -63,3 +63,24 @@ class MealLog(models.Model):
 
     def __str__(self):
         return f"{self.user.username} - {self.meal_type} on {self.date} ({self.calories} cal)"
+
+
+class JournalEntry(models.Model):
+    MOOD_CHOICES = [
+        ('happy', 'Happy'),
+        ('sad', 'Sad'),
+        ('angry', 'Angry'),
+        ('anxious', 'Anxious'),
+        ('calm', 'Calm'),
+        ('excited', 'Excited'),
+        ('tired', 'Tired'),
+        ('neutral', 'Neutral'),
+    ]
+
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='journal_entries')
+    mood = models.CharField(max_length=20, choices=MOOD_CHOICES)
+    note = models.TextField(blank=True)
+    date = models.DateField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.user.username} - {self.mood} on {self.date}"

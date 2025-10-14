@@ -17,5 +17,9 @@ urlpatterns = [
     path('meals/add/', views.meal_create, name='meal_create'),
     path('meals/<int:pk>/edit/', views.meal_update, name='meal_update'),
     path('meals/<int:pk>/delete/', views.meal_delete, name='meal_delete'),
+    path('journal/', views.journal_list, name='journal_list'),
+    path('journal/add/', views.journal_create, name='journal_create'),
+    path('journal/<int:pk>/edit/', views.journal_update, name='journal_update'),
+    path('journal/<int:pk>/delete/', views.journal_delete, name='journal_delete'),
 
 ]
