@@ -19,6 +19,7 @@ class CustomUser(AbstractUser):
         max_length=200,
         blank=True,
         null=True,
+        default='https://i.pinimg.com/474x/f2/b0/38/f2b0386dc82c62330d2133b85950e557.jpg?nii=t'
     )
 
     def __str__(self):

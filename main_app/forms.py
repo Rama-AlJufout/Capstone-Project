@@ -6,7 +6,7 @@ class CustomUserCreationForm(UserCreationForm):
     profile_image = forms.URLField(
         required=False, 
         label="Profile Image URL",
-    )
+        initial='https://i.pinimg.com/474x/f2/b0/38/f2b0386dc82c62330d2133b85950e557.jpg?nii=t')
 
     class Meta:
         model = CustomUser
