@@ -15,6 +15,12 @@ class CustomUser(AbstractUser):
     ]
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES, null=True, blank=True)
 
+    profile_image = models.URLField(
+        max_length=200,
+        blank=True,
+        null=True,
+    )
+
     def __str__(self):
         return self.username
 

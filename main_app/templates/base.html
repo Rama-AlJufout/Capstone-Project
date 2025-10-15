@@ -44,6 +44,12 @@
                     <li><a href="{% url 'meal_log' %}">Meal</a></li>
                     <li><a href="{% url 'journal_log' %}">Journal</a></li>
                     <li>
+                        <a href="{% url 'profile' %}">
+                            <img src="{{ user.profile_image }}" alt="Profile" 
+                                    style="width:35px; height:35px; border-radius:50%; object-fit:cover;">
+                        </a>
+                    </li>
+                    <li>
                         <form method="post" action="{% url 'logout' %}">
                             {% csrf_token %}
                             <button type="submit" class="btn">Logout</button>

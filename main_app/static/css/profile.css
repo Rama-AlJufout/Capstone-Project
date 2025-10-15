@@ -1,6 +1,6 @@
 /* ===== GENERAL PAGE ===== */
 body {
-  background: url('../images/activity-bg.avif') no-repeat center center fixed;
+  background: url('../images/pro-bg.jpg') no-repeat center center fixed;
   background-size: cover;
   font-family: 'Poppins', sans-serif;
   color: #222;
@@ -65,6 +65,27 @@ body {
 .profile-field span {
   color: #222222;
 }
+
+.profile-image {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.profile-image img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid rgba(255, 255, 255, 0.6);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s;
+}
+
+.profile-image img:hover {
+    transform: scale(1.05);
+}
+
 
 .edit-btn {
   display: inline-block;

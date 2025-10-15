@@ -3,15 +3,22 @@ from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from .models import CustomUser, ActivityLog, MealLog, JournalEntry
 
 class CustomUserCreationForm(UserCreationForm):
+    profile_image = forms.URLField(
+        required=False, 
+        label="Profile Image URL",
+    )
+
     class Meta:
         model = CustomUser
-        fields = ['username', 'password1', 'password2', 'age', 'height', 'weight', 'gender']
+        fields = ['username', 'password1', 'password2', 'age', 'height', 'weight', 'gender', 'profile_image']
 
 
 class CustomUserUpdate(UserChangeForm):
+    profile_image = forms.URLField(required=False, label="Profile Image URL")
+
     class Meta:
         model = CustomUser
-        fields = ['username', 'age', 'height', 'weight', 'gender']
+        fields = ['username', 'age', 'height', 'weight', 'gender', 'profile_image']
 
 
 
