@@ -25,11 +25,9 @@
       {{ form.as_p }}
       <button type="submit" class="edit-btn">💾 Save Changes</button>
     </form>
-
-    <form method="POST" action="{% url 'activity_delete' activity.pk %}" style="margin-top:20px;">
-      {% csrf_token %}
-      <button type="submit" class="delete-btn">🗑 Delete Activity</button>
-    </form>
+    <div class="add-activity-container">
+          <a href="{% url 'activity_log' %}" class="cancel-btn">Back to Activities</a>
+      </div>
   </div>
 </div>
 

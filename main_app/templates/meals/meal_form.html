@@ -6,17 +6,26 @@
 {% endblock %}
 
 {% block content %}
+<!-- ===== Image Background ===== -->
+<div class="bg-image">
+  <img src="{% static 'images/meal-bg.jpg' %}" alt="Background">
+  <div class="overlay"></div>
+</div>
+
 <div class="meal-wrapper">
-    <div class="glass-card">
-        <h2 class="meal-header">{{ title }}</h2>
-        <form method="POST">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit" class="add-meal-btn">Save</button>
-        </form>
-        <div class="add-meal-container">
-            <a href="{% url 'meal_list' %}" class="cancel-btn">Back to Meals</a>
-        </div>
+  <div class="form-container glass-card">
+    <h2 class="meal-header">{{ title }}</h2>
+
+    <form method="POST">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" class="edit-btn">💾 Save Changes</button>
+    </form>
+
+    <div class="add-meal-container" style="margin-top: 25px;">
+      <a href="{% url 'meal_log' %}" class="cancel-btn">Back to Meals</a>
     </div>
+  </div>
 </div>
 {% endblock %}
+

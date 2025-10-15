@@ -6,6 +6,11 @@
 {% endblock %}
 
 {% block content %}
+<!-- ===== Image Background ===== -->
+<div class="bg-image">
+  <img src="{% static 'images/meal-bg.jpg' %}" alt="Background">
+  <div class="overlay"></div>
+</div>
 <div class="meal-wrapper">
     <div class="confirm-delete-container" style="display:flex;">
         <div class="confirm-card glass-card">
@@ -16,7 +21,7 @@
                     {% csrf_token %}
                     <button type="submit" class="delete-btn">Yes, delete</button>
                 </form>
-                <a href="{% url 'meal_list' %}" class="cancel-btn">Cancel</a>
+                <a href="{% url 'meal_log' %}" class="cancel-btn">Cancel</a>
             </div>
         </div>
     </div>

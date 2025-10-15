@@ -8,27 +8,22 @@
 {% block body_class %}journal-page{% endblock %}
 
 {% block content %}
+<!-- ===== Image Background ===== -->
+<div class="bg-image">
+  <img src="{% static 'images/jo-bg.avif' %}" alt="Background">
+  <div class="overlay"></div>
+</div>
 <div class="journal-wrapper">
-
-  <div class="journal-header">
-    {% if form.instance.pk %}Update Journal Entry{% else %}New Journal Entry{% endif %}
-  </div>
-
-  <div class="form-container">
-    <h2>{% if form.instance.pk %}Update{% else %}Add{% endif %} Entry</h2>
+  <div class="glass-card">
+    <h2 class="journal-header">{{ title }}</h2>
     <form method="POST">
-      {% csrf_token %}
-      {{ form.non_field_errors }}
-
-      <label for="id_mood">Mood</label>
-      {{ form.mood }}
-
-      <label for="id_note">Note</label>
-      {{ form.note }}
-
-      <button type="submit">{% if form.instance.pk %}Update{% else %}Add{% endif %}</button>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="add-journal-btn">💾 Save Changes</button>
     </form>
+    <div class="add-journal-container">
+        <a href="{% url 'journal_log' %}" class="cancel-btn">Back to Journals</a>
+    </div>
   </div>
-
 </div>
 {% endblock %}

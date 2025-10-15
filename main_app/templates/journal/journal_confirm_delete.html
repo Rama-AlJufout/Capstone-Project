@@ -8,6 +8,11 @@
 {% block body_class %}journal-page{% endblock %}
 
 {% block content %}
+<!-- ===== Image Background ===== -->
+<div class="bg-image">
+  <img src="{% static 'images/jo-bg.avif' %}" alt="Background">
+  <div class="overlay"></div>
+</div>
 <div class="confirm-delete-container">
   <div class="confirm-card">
     <h2>Delete Journal Entry?</h2>
@@ -15,7 +20,7 @@
     <form method="POST">
       {% csrf_token %}
       <button type="submit" class="delete-btn">Yes, Delete</button>
-      <a href="{% url 'journal_list' %}" class="edit-btn">Cancel</a>
+      <a href="{% url 'journal_log' %}" class="edit-btn">Cancel</a>
     </form>
   </div>
 </div>

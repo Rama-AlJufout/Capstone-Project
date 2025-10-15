@@ -6,8 +6,12 @@
 {% endblock %}
 
 {% block content %}
+<!-- ===== Image Background ===== -->
+<div class="bg-image">
+  <img src="{% static 'images/meal-bg.jpg' %}" alt="Background">
+  <div class="overlay"></div>
+</div>
 <div class="meal-wrapper">
-
   {% if meals %}
     <!-- ===== Meal History ===== -->
     <div class="history-container">

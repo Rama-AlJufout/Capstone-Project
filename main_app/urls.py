@@ -16,8 +16,8 @@ urlpatterns = [
     path('meals/', views.meal_log_view, name='meal_log'),
     path('meals/<int:pk>/edit/', views.meal_update, name='meal_update'),
     path('meals/<int:pk>/delete/', views.meal_delete, name='meal_delete'),
-    path('journal/', views.journal_log_view, name='journal_log'),
-    path('journal/<int:pk>/edit/', views.journal_update, name='journal_update'),
-    path('journal/<int:pk>/delete/', views.journal_delete, name='journal_delete'),
+    path('journals/', views.journal_log_view, name='journal_log'),
+    path('journals/<int:pk>/edit/', views.journal_update, name='journal_update'),
+    path('journals/<int:pk>/delete/', views.journal_delete, name='journal_delete'),
 
 ]

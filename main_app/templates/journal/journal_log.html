@@ -6,13 +6,16 @@
 {% endblock %}
 
 {% block content %}
+<!-- ===== Image Background ===== -->
+<div class="bg-image">
+  <img src="{% static 'images/jo-bg.avif' %}" alt="Background">
+  <div class="overlay"></div>
+</div>
 <div class="journal-wrapper">
-
   {% if journals %}
     <!-- ===== Journal History ===== -->
     <div class="history-container">
       <h2 class="journal-header">My Journal</h2>
-
       <div class="journal-cards">
         {% for entry in journals %}
         <div class="journal-card glass-card">

@@ -131,10 +131,10 @@ def meal_update(request, pk):
         form = MealLogForm(request.POST, instance=meal)
         if form.is_valid():
             form.save()
-            return redirect('meal_list')
+            return redirect('meal_log')
     else:
         form = MealLogForm(instance=meal)
-    return render(request, 'meals/meal_form.html', {'form': form, 'title': 'Edit Meal'})
+    return render(request, 'meals/meal_form.html', {'form': form, 'meal': meal, 'title': 'Edit Meal'})
 
 @login_required
 def meal_delete(request, pk):
@@ -142,7 +142,7 @@ def meal_delete(request, pk):
     meal = get_object_or_404(MealLog, pk=pk, user=request.user)
     if request.method == 'POST':
         meal.delete()
-        return redirect('meal_list')
+        return redirect('meal_log')
     return render(request, 'meals/meal_confirm_delete.html', {'meal': meal})
 
 
@@ -163,26 +163,26 @@ def journal_log_view(request):
     else:
         form = JournalEntryForm()
 
-    return render(request, 'journal/journal_log.html', {'form': form, 'journal': journals})
+    return render(request, 'journal/journal_log.html', {'form': form, 'journals': journals})
 
 @login_required
 def journal_update(request, pk):
     # UPDATE
-    journal = get_object_or_404(JournalEntry, pk=pk, user=request.user)
+    journals = get_object_or_404(JournalEntry, pk=pk, user=request.user)
     if request.method == 'POST':
-        form = JournalEntryForm(request.POST, instance=journal)
+        form = JournalEntryForm(request.POST, instance=journals)
         if form.is_valid():
             form.save()
-            return redirect('journal_list')
+            return redirect('journal_log')
     else:
-        form = JournalEntryForm(instance=journal)
-    return render(request, 'journal/journal_form.html', {'form': form, 'title': 'Edit Journal Entry'})
+        form = JournalEntryForm(instance=journals)
+    return render(request, 'journal/journal_form.html', {'form': form, 'journals': journals, 'title': 'Edit Journal Entry'})
 
 @login_required
 def journal_delete(request, pk):
     # DELETE
-    journal = get_object_or_404(JournalEntry, pk=pk, user=request.user)
+    journals = get_object_or_404(JournalEntry, pk=pk, user=request.user)
     if request.method == 'POST':
-        journal.delete()
-        return redirect('journal_list')
-    return render(request, 'journal/journal_confirm_delete.html', {'journal': journal})
+        journals.delete()
+        return redirect('journal_log')
+    return render(request, 'journal/journal_confirm_delete.html', {'journals': journals})

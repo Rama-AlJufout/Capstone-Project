@@ -1,13 +1,34 @@
-/* ================= MEALS PAGE ================= */
-
-/* ===== PAGE BACKGROUND ===== */
 body {
-  background: url('../images/meals-bg.jpg') no-repeat center center fixed;
-  background-size: cover;
-  font-family: 'Poppins', sans-serif;
-  color: #222;
-  margin: 0;
-  padding: 0;
+    background-size: cover;
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #222;
+}
+.bg-image {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+  overflow: hidden;
+}
+
+.bg-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: -1;
 }
 
 /* ===== HEADER ===== */
@@ -172,7 +193,7 @@ body {
   width: 100%;
   padding: 14px;
   background: linear-gradient(90deg, #00c4a7, #00796b);
-  color: #222;
+  color: #fff;
   font-size: 1.1rem;
   border: none;
   border-radius: 12px;
@@ -305,4 +326,94 @@ body {
   .form-container {
     padding: 25px;
   }
+}
+
+
+/* ===== GLASS CARD ===== */
+.glass-card {
+  background: rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(15px);
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.3);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+  padding: 30px;
+  width: 100%;
+  max-width: 600px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glass-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.2);
+}
+
+/* ===== SAVE / ADD MEAL BUTTONS ===== */
+.add-meal-btn {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(90deg, #00c4a7, #00796b);
+  color: #fff;
+  font-size: 1.05rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.add-meal-btn:hover {
+  background: linear-gradient(90deg, #00796b, #00c4a7);
+  transform: scale(1.03);
+  box-shadow: 0 10px 25px rgba(0, 121, 107, 0.25);
+}
+
+/* ===== BACK BUTTON / CANCEL LINK ===== */
+.cancel-btn {
+  display: inline-block;
+  text-decoration: none;
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-weight: 600;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  text-align: center;
+}
+
+.cancel-btn:hover {
+  background: linear-gradient(90deg, #00c4a7, #00796b);
+  transform: scale(1.03);
+  box-shadow: 0 10px 20px rgba(0,121,107,0.25);
+}
+
+/* ===== ADD MEAL CONTAINER ===== */
+.add-meal-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 25px;
+}
+
+/* ===== HISTORY CONTAINER (Meal Log Section) ===== */
+.history-container {
+  width: 100%;
+  max-width: 1000px;
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 30px;
+  border: 1px solid rgba(255,255,255,0.3);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+/* ===== SMOOTH FADE-IN ANIMATION ===== */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.meal-wrapper,
+.meal-card,
+.form-container,
+.glass-card {
+  animation: fadeIn 0.5s ease;
 }

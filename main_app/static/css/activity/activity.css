@@ -235,6 +235,19 @@
   transform: translateY(-3px);
   box-shadow: 0 12px 24px rgba(0, 121, 107, 0.16);
 }
+.cancel-btn{
+    display: inline-block;
+    padding: 12px 18px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 600;
+    color: #fff;
+}
+.cancel-btn:hover {
+  background: linear-gradient(90deg, #00c4a7, #00796b);
+  transform: scale(1.03);
+  box-shadow: 0 10px 20px rgba(0,121,107,0.25);
+}
 
 /* Delete (danger) */
 .delete-btn {
