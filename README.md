@@ -66,7 +66,7 @@ This project allows users to manage their health and wellness by logging activit
 
 ### ERD
 
-![ERD Diagram](images/ERD.png)
+![ERD Diagram](images/erd.png)
 
 **Relationships:**
 
