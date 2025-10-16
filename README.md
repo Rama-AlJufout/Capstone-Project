@@ -45,12 +45,15 @@ This project allows users to manage their health and wellness by logging activit
 
    ```bash
    pip install pipenv 
+   pipenv shell
    pipenv install django
    pipenv install psycopg2-binary
+   createdb healthwellnesstracker
    ```
 5. **Apply database migrations:**
 
    ```bash
+   python manage.py makemigrations
    python manage.py migrate
    ```
 6. **Run the development server:**
@@ -124,9 +127,9 @@ This project allows users to manage their health and wellness by logging activit
 
 ## Challenges and Solutions
 
-* **Maintaining consistent styling:** Created a global CSS for each Model and it contain all the style for HTML pages.
-* **Managing multiple models with CRUD:** Structured Django views, forms, and templates carefully for data handling.
-* **User authentication & access control:** Configured Django’s login_required decorators and redirect logic.
+* **Database and Model Relationships:**  Defined clear relationships between User, ActivityLog, MealLog, and JournalEntry using Django’s ForeignKey. Tested each model in the admin panel before linking it to templates.
+* **Managing Multiple CRUD Operations:**  Organized logic for each model into separate files (views.py, forms.py, and template folders) to keep CRUD operations clean and manageable.
+* **Authentication and Data Privacy:**  Ensured that each user only sees their own data by applying Django’s authentication system and filtered queries for secure access.
 
 ---
 
@@ -135,6 +138,7 @@ This project allows users to manage their health and wellness by logging activit
 * Add `HealthMetric` model for tracking weight, blood pressure, heart rate, and sleep hours.
 * Implement reminders for daily habits.
 * Set and track personal health goals.
+* Calculate the calorise using AI models.
 * Support image or file uploads meal photos.
 * Advanced analytics and charts for activity, nutrition, and health trends.
 * Push notifications for reminders.
